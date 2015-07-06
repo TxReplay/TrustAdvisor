@@ -1,0 +1,18 @@
+<template name="layout">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2">
+					<br><br><a class="accueil btn btn-primary" href="{{pathFor 'home'}}">Accueil</a>
+				{{ #if currentUser }}
+						<a class="profil btn btn-primary" href="{{ pathFor 'user' _id=currentUser._id }}">Mon profil</a>
+						<a class="logout btn btn-warning" href="{{ pathFor 'home' }}">Deconnexion</a>
+				{{ else }}
+						<a class="login btn btn-primary" href="{{ pathFor 'login' }}">Se connecter</a>
+						 <a class="register btn btn-primary" href="{{ pathFor 'register' }}">S'enregistrer</a>
+				{{ /if }}
+				
+				{{> yield }}
+			</div>
+		</div>
+	</div>
+</template>

@@ -1,0 +1,39 @@
+<template name="user">
+	<div class="row">
+		<div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
+			<h1> Profil de {{ nom }} {{ prenom }}  :</h1>			
+			<div class="margin">Mail : {{ mail }} </div>
+			<div class="margin">nom d'Utilisateur : {{ username }} </div>
+		</div>
+	</div>
+	<div class="row">
+		<h2>Mes comptes </h2>
+		<div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
+			{{ #if blablaAccount }}
+				ton id est : test
+			{{ else }}
+				<button id="blabla-add" class="visible">Ajouter compte Blablacar</button>
+				<input type="text" id="blabla-id" class="hidden" placeholder="Votre pseudo Blablacar"/>
+				<button id="blabla-save" class="hidden" >Enregistrer</button>
+			{{ /if }}
+		</div>
+		<div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
+			{{ #if ebayAccount }}
+				ton id est : test
+			{{ else }}
+				<button id="ebay-add">Ajouter compte Ebay</button>
+				<input type="text" id="ebay-id" placeholder="Votre pseudo Ebay"/>
+				<button id="ebay-save">Enregistrer</button>
+			{{ /if }}
+		</div>
+		<div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
+			{{ #if bnbAccount }}
+				ton id est : test
+			{{ else }}
+				<button id="bnb-add">Ajouter compte AirBnb</button>
+				<input type="text" id="bnb-id" placeholder="Votre pseudo AirBnb"/>
+				<button id="bnb-save">Enregistrer</button>
+			{{ /if }}
+		</div>
+	</div>
+</template>

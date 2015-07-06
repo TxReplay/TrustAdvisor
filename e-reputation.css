@@ -1,0 +1,9 @@
+/* CSS declarations go here */
+
+.visible {
+display: block;
+}
+
+.hidden {
+display: none;
+}
