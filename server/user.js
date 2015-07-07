@@ -1,15 +1,17 @@
 Meteor.methods({
-	getBlablaInfos: function(){
-		this.unblock();
-		return Meteor.http.call("GET", "https://www.kimonolabs.com/api/7amcc6em?apikey=YOkuRYZQhnkbwfVZCkl2auAoBOPVoQ7Y");
-	},
+
 	getBlablaInfoswithID: function(id){
 		this.unblock();
-		return Meteor.http.call("GET", "http://www.kimonolabs.com/api/ondemand/6qwg23v4&kimpath3=" + id);
+		return Meteor.http.call("GET", "http://www.kimonolabs.com/api/ondemand/6qwg23v4?apikey=YOkuRYZQhnkbwfVZCkl2auAoBOPVoQ7Y&kimpath1=membre&kimpath2=profil&kimpath3=" + id);
 	},
-	
-	getBnbInfos: function() {
+
+	getEbayInfoswithUsername: function(username){
 		this.unblock();
-		return Meteor.http.call("GET", "https://www.kimonolabs.com/api/7915pfn0?apikey=YOkuRYZQhnkbwfVZCkl2auAoBOPVoQ7Y");
+		return Meteor.http.call("GET", "http://www.kimonolabs.com/api/ondemand/4ifc1p82?apikey=ulHmzZtiszzyC1zSCXLULuwmdUZBh3K4&kimpath1=usr&kimpath2=" + username);
+	},
+
+	getAirbnbInfoswithID: function(id){
+		this.unblock();
+		return Meteor.http.call("GET", "http://www.kimonolabs.com/api/ondemand/3dvximvo?apikey=YOkuRYZQhnkbwfVZCkl2auAoBOPVoQ7Y&kimpath1=users&kimpath2=show&kimpath3=" + id);
 	}
 });

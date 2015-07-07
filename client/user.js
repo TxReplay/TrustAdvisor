@@ -36,9 +36,9 @@ Template.user.helpers
 		
 		blablaInfos : function() {
 			var id = Meteor.users.findOne({ _id : this._id }).profile.blablaId;
-			 Meteor.call("getBlablaInfoswithID", id, function(error, result){
+		 	Meteor.call("getBlablaInfoswithID", id, function(error, result){
 				 console.log(result.data);
-				var test = {"note" : result.data.results.collection2[0].note, "nbCom" : result.data.results.collection2[0].nombre_avis};
+				var test = {"note" : result.data.results.collection1[0].note, "nbCom" : result.data.results.collection1[0].nb_avis};
 				Session.set('bla', test);
 			});
 			return Session.get('bla');
@@ -51,6 +51,16 @@ Template.user.helpers
 			else{
 				return false;
 			}
+		},
+		
+		ebayInfos : function() {
+			var username = Meteor.users.findOne({ _id : this._id }).profile.ebayId;
+			 Meteor.call("getEbayInfoswithUsername", username, function(error, result){
+			    console.log(result.data);
+				var test = {"note" : result.data.results.collection1[0].note};
+				Session.set('ebay', test);
+			});
+			return Session.get('ebay');
 		},
 		
 		ebayId : function() {
@@ -71,8 +81,12 @@ Template.user.helpers
 		}, 
 		
 		bnbInfos : function() {
-			Meteor.call("getBnbInfos", function(error, result){
-				var test = {"note" : "10(fake)", "nbCom" : result.data.results.collection1[0].nb_commentaire.text};
+
+			var id = Meteor.users.findOne({ _id : this._id }).profile.bnbId;
+
+			Meteor.call("getAirbnbInfoswithID", id, function(error, result){
+				 console.log(result.data);
+				var test = {"note" : 'on sait pas', "nbCom" : result.data.results.collection1[0].nb_avis.text};
 				Session.set('bnb', test);
 			});
 			return Session.get('bnb');

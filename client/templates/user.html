@@ -20,7 +20,7 @@
 		</div>
 		<div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
 			{{ #if ebayAccount }}
-				ton id Ebay : {{ ebayId }}
+				ton pseudo Ebay : {{ ebayId }}
 				<button id="ebay-delete">X</button>
 			{{ else }}
 				<button id="ebay-add" class="visible">Ajouter compte Ebay</button>
@@ -50,7 +50,14 @@
 			<h1> Vos infos BNB </h1>
 			note: random
 			<br>
-			Nombre d'avis {{ bnbInfos.nbCom }}
+			Nombre d'avis : {{ bnbInfos.nbCom }}
+		{{ /if }}
+		{{ #if ebayAccount }}
+			<h1> Vos infos eBay</h1>
+			Note : {{ ebayInfos.note }}
+			<br>
+			
 		{{ /if }}
 	</div>
+
 </template>
