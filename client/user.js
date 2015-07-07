@@ -3,8 +3,7 @@ Template.user.helpers
 	{
 		nom : function() 
 		{
-			var nom = Meteor.users.findOne({ _id : this._id}).profile.nom;
-			return nom;
+			return Meteor.users.findOne({ _id : this._id}).profile.nom;
 		},
 		
 		mail : function() 
@@ -37,11 +36,10 @@ Template.user.helpers
 		
 		blablaInfos : function() {
 			 Meteor.call("getBlablaInfos", function(error, result){
-				console.log(result.data.results.collection2[0].note);
 				var test = {"note" : result.data.results.collection2[0].note, "nbCom" : result.data.results.collection2[0].nombre_avis};
-				Session.set('q', test);
+				Session.set('bla', test);
 			});
-			return Session.get('q');
+			return Session.get('bla');
 		},
 		
 		ebayAccount : function() {
@@ -68,6 +66,14 @@ Template.user.helpers
 		
 		bnbId : function() {
 			return Meteor.users.findOne({ _id : this._id }).profile.bnbId;
+		}, 
+		
+		bnbInfos : function() {
+			Meteor.call("getBnbInfos", function(error, result){
+				var test = {"note" : "10(fake)", "nbCom" : result.data.results.collection1[0].nb_commentaire.text};
+				Session.set('bnb', test);
+			});
+			return Session.get('bnb');
 		}
 	}
 );
@@ -83,7 +89,12 @@ Template.user.events({
 	
 	'click #blabla-save' : function(event, template) {
 		var blabla_id = template.find("#blabla-id").value;
-		Meteor.users.update( { _id: this._id }, {$set: {"profile.blablaId" : blabla_id} } );
+		if ( blabla_id ) {
+			Meteor.users.update( { _id: this._id }, {$set: {"profile.blablaId" : blabla_id} } );
+		}
+		else {
+			alert('C\'est vide...');
+		}
 	},
 	
 	'click #blabla-delete' : function(event, template) {
@@ -99,7 +110,12 @@ Template.user.events({
 	
 	'click #ebay-save' : function(event, template) {
 		var ebay_id = template.find("#ebay-id").value;
-		Meteor.users.update( { _id: this._id }, {$set: {"profile.ebayId" : ebay_id} } ); 
+		if ( ebay_id ) {
+			Meteor.users.update( { _id: this._id }, {$set: {"profile.ebayId" : ebay_id} } ); 
+		}
+		else {
+			alert('C\'est vide...');
+		}
 	},
 	
 	'click #ebay-delete' : function(event, template) {
@@ -115,7 +131,12 @@ Template.user.events({
 	
 	'click #bnb-save' : function(event, template) {
 		var bnb_id = template.find("#bnb-id").value;
-		Meteor.users.update( { _id: this._id }, {$set: {"profile.bnbId" : bnb_id} } );
+		if ( bnb_id ) {
+			Meteor.users.update( { _id: this._id }, {$set: {"profile.bnbId" : bnb_id} } );
+		}
+		else {
+			alert('C\'est vide...');
+		}
 	},
 	
 	'click #bnb-delete' : function(event, template) {
