@@ -3,7 +3,8 @@ Template.user.helpers
 	{
 		nom : function() 
 		{
-			return Meteor.users.findOne({ _id : this._id}).profile.nom;
+			var nom = Meteor.users.findOne({ _id : this._id}).profile.nom;
+			return nom;
 		},
 		
 		mail : function() 
@@ -32,6 +33,13 @@ Template.user.helpers
 		
 		blablaId : function() {
 			return Meteor.users.findOne({ _id : this._id }).profile.blablaId;
+		},
+		
+		blablaInfos : function() {
+			Meteor.call("getBlablaInfos", function(error, result){
+				console.log(result.data.results.collection2[0].note);
+				return {"note" : result.data.results.collection2[0].note, "nbCom" : result.data.results.collection2[0].nombre_avis results.data;
+			});
 		},
 		
 		ebayAccount : function() {
@@ -76,6 +84,10 @@ Template.user.events({
 		Meteor.users.update( { _id: this._id }, {$set: {"profile.blablaId" : blabla_id} } );
 	},
 	
+	'click #blabla-delete' : function(event, template) {
+		Meteor.users.update( { _id: this._id }, {$unset: {"profile.blablaId" : ""} } );
+	},
+	
 	'click #ebay-add' : function (event, template) {
 		
 		$("#ebay-add").toggleClass('visible hidden');
@@ -88,6 +100,10 @@ Template.user.events({
 		Meteor.users.update( { _id: this._id }, {$set: {"profile.ebayId" : ebay_id} } ); 
 	},
 	
+	'click #ebay-delete' : function(event, template) {
+		Meteor.users.update( { _id: this._id }, {$unset: {"profile.ebayId" : ""} } );
+	},
+	
 	'click #bnb-add' : function (event, template) {
 		
 		$("#bnb-add").toggleClass('visible hidden');
@@ -98,5 +114,9 @@ Template.user.events({
 	'click #bnb-save' : function(event, template) {
 		var bnb_id = template.find("#bnb-id").value;
 		Meteor.users.update( { _id: this._id }, {$set: {"profile.bnbId" : bnb_id} } );
+	},
+	
+	'click #bnb-delete' : function(event, template) {
+		Meteor.users.update( { _id: this._id }, {$unset: {"profile.bnbId" : ""} } );
 	}
 });

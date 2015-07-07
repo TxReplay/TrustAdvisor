@@ -11,6 +11,7 @@
 		<div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
 			{{ #if blablaAccount }}
 				ton id Blablacar : {{ blablaId }}
+				<button id="blabla-delete">X</button>
 			{{ else }}
 				<button id="blabla-add" class="visible">Ajouter compte Blablacar</button>
 				<input type="text" id="blabla-id" class="hidden" placeholder="Votre pseudo Blablacar"/>
@@ -20,6 +21,7 @@
 		<div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
 			{{ #if ebayAccount }}
 				ton id Ebay : {{ ebayId }}
+				<button id="ebay-delete">X</button>
 			{{ else }}
 				<button id="ebay-add" class="visible">Ajouter compte Ebay</button>
 				<input type="text" id="ebay-id" class="hidden" placeholder="Votre pseudo Ebay"/>
@@ -29,11 +31,20 @@
 		<div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
 			{{ #if bnbAccount }}
 				ton id Bnb : {{ bnbId }}
+				<button id="bnb-delete">X</button>
 			{{ else }}
 				<button id="bnb-add" class="visible">Ajouter compte AirBnb</button>
 				<input type="text" id="bnb-id" class="hidden" placeholder="Votre pseudo AirBnb"/>
 				<button id="bnb-save" class="hidden">Enregistrer</button>
 			{{ /if }}
 		</div>
+	</div>
+	<div class="row">
+		{{ #if blablaAccount }}
+			<h1> Vos infos blablaCar</h1>
+			Note : {{ blablaNote }}/5
+			<br>
+			{{ blablaInfos }}
+		{{ /if }}
 	</div>
 </template>

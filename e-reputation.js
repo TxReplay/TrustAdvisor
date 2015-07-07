@@ -3,7 +3,7 @@ test = new Mongo.Collection( "test" );
 
 if ( Meteor.isServer )
 {
-console.log(Meteor.http.call("GET", "https://www.kimonolabs.com/api/7amcc6em?apikey=YOkuRYZQhnkbwfVZCkl2auAoBOPVoQ7Y"));
+//console.log(Meteor.http.call("GET", "https://www.kimonolabs.com/api/7amcc6em?apikey=YOkuRYZQhnkbwfVZCkl2auAoBOPVoQ7Y"));
 
     // Meteor.methods({
     //     checkTwitter: function () {
