@@ -35,7 +35,9 @@ Template.user.helpers
 		},
 		
 		blablaInfos : function() {
-			 Meteor.call("getBlablaInfos", function(error, result){
+			var id = Meteor.users.findOne({ _id : this._id }).profile.blablaId;
+			 Meteor.call("getBlablaInfoswithID", id, function(error, result){
+				 console.log(result.data);
 				var test = {"note" : result.data.results.collection2[0].note, "nbCom" : result.data.results.collection2[0].nombre_avis};
 				Session.set('bla', test);
 			});
