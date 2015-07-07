@@ -34,7 +34,7 @@ Template.user.events({
 	
 	'click #blabla-save' : function(event, template) {
 		var blabla_id = template.find("#blabla-id");
-		Meteor.users.update( { _id: this._id }, {$set: {"profile.blablaId" : blabla_id} } ); 
+		Meteor.users.update( { _id: this._id }, {$set: {"profile.blablaId" : blabla_id} } );
 	},
 	
 	'click #ebay-add' : function (event, template) {
@@ -58,6 +58,6 @@ Template.user.events({
 	
 	'click #bnb-save' : function(event, template) {
 		var bnb_id = template.find("#bnb-id");
-		Meteor.users.update( { _id: this._id }, {$set: {"profile.bnbId" : bnb_id} } ); 
+		Meteor.users.update( { _id: this._id }, {$set: {"profile.bnbId" : bnb_id} } );
 	}
 });
