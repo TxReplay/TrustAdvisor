@@ -36,10 +36,12 @@ Template.user.helpers
 		},
 		
 		blablaInfos : function() {
-			Meteor.call("getBlablaInfos", function(error, result){
+			 Meteor.call("getBlablaInfos", function(error, result){
 				console.log(result.data.results.collection2[0].note);
-				return {"note" : result.data.results.collection2[0].note, "nbCom" : result.data.results.collection2[0].nombre_avis results.data;
+				var test = {"note" : result.data.results.collection2[0].note, "nbCom" : result.data.results.collection2[0].nombre_avis};
+				Session.set('q', test);
 			});
+			return Session.get('q');
 		},
 		
 		ebayAccount : function() {
