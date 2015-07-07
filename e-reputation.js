@@ -3,14 +3,15 @@ test = new Mongo.Collection( "test" );
 
 if ( Meteor.isServer )
 {
-console.log(Meteor.http.call("GET", "https://www.kimonolabs.com/api/7amcc6em?apikey=YOkuRYZQhnkbwfVZCkl2auAoBOPVoQ7Y"));
+// var blablaApi = Meteor.http.call("GET", "https://www.kimonolabs.com/api/7amcc6em?apikey=YOkuRYZQhnkbwfVZCkl2auAoBOPVoQ7Y");
 
-    // Meteor.methods({
-    //     checkTwitter: function () {
-    //         this.unblock();
-    //         return Meteor.http.call("GET", "http://search.twitter.com/search.json?q=perkytweets");
-    //     }
-    // });
+// console.log(blablaApi);
+    Meteor.methods({
+        getBlablaCar: function () {
+            this.unblock();
+            return Meteor.http.call("GET", "https://www.kimonolabs.com/api/7amcc6em?apikey=YOkuRYZQhnkbwfVZCkl2auAoBOPVoQ7Y");
+        }
+    });
 }
 
 if ( Meteor.isClient )
@@ -24,4 +25,8 @@ if ( Meteor.isClient )
 		},
 		
 	});
+
+	Meteor.call("getBlablaCar", function(error, results) {
+        console.log(results.content); //results.data should be a JSON object
+    });
 }
