@@ -19,17 +19,17 @@ Template.user.helpers({
 		trustIndicator :function() {
 			var profile = this.profile;
 			if (profile.linkedAcc > 1) {
-				
 				var linked = profile.linkedAcc;
-				var notes = [int(profile.blablaNote), int(profile.ebayNoteTrust), int(profile.bnbNote)];
+				var notes = [profile.blablaNote, profile.ebayNoteTrust, profile.bnbNote];
 				var trustInd = 0;
 				for (var i=0; i<notes.length; i++) {
-					if ( notes[i] ) {
-						trustInd += notes[i];
+					if (notes[i]) {
+						trustInd += parseFloat(notes[i]);
 					}
 				}
 				trustInd = (trustInd/ linked).toFixed(2);
-				return "Votre note TrustAdvisor est de : " + trustInd;
+				var text = "Votre note TrustAdvisor est de : " + trustInd;
+				return text;
 			}
 			else {
 				return "Veuillez renseigner au moins 2 comptes pour recevoir votre note TrustAdvisor!";
@@ -81,13 +81,18 @@ Template.user.helpers({
 				var id = this.profile.blablaId;
 				if ( id ) {
 					Meteor.call("getBlablaInfoswithID", id, function(error, result){
-						var infos_set = {"note" : result.data.results.collection1[0].note, "nbAvis" : result.data.results.collection1[0].nb_avis};
-						Session.set('bla', infos_set);
+						if (error) {
+							var infos_set = {"linked" : false};
+							Session.set('bla', infos_set);
+						}
+						else{
+							var infos_set = {"note" : result.data.results.collection1[0].note, "nbAvis" : result.data.results.collection1[0].nb_avis,"linked" : true};
+							Session.set('bla', infos_set);
+						}
 					});
 					var infos = Session.get('bla');
 					var linked = this.profile.linkedAcc;
-					linked++;
-					console.log(linked);
+					linked = (infos.linked) ? linked + 1 : linked;
 					Meteor.users.update( { _id: this._id }, {$set: {"profile.blablaNote" : infos.note, "profile.blablaNbAvis" : infos.nbAvis, "profile.linkedAcc" : linked} } );
 					return infos;
 				}
@@ -117,21 +122,27 @@ Template.user.helpers({
 				var username = this.profile.ebayId;
 				if ( username ) {
 					Meteor.call("getEbayInfoswithUsername", username, function(error, result){
-						var note = result.data.results.collection1[0].note;
-						// test.split(/[^0-9]{1,}/);
-						// var note = int(test[0]);
-						// var noteTrust = (note /100 * 5).toFixed(2);
-						var random = ((Math.random() * 5) + 1).toFixed(2);
-						if ( random > 5 ) {
-							random = Math.floor(random);
+						if (error) {
+							var infos_set = {"linked" : false};
+							Session.set('bla', infos_set);
 						}
-						var infos_set = {"note" : note, "noteTrust" : random};
-						Session.set('ebay', infos_set);
+						else {
+								
+							var note = result.data.results.collection1[0].note;
+							// test.split(/[^0-9]{1,}/);
+							// var note = int(test[0]);
+							// var noteTrust = (note /100 * 5).toFixed(2);
+							var random = ((Math.random() * 5) + 1).toFixed(2);
+							if ( random > 5 ) {
+								random = Math.floor(random);
+							}
+							var infos_set = {"note" : note, "noteTrust" : random, "linked" : true};
+							Session.set('ebay', infos_set);
+						}
 					});
 					var infos = Session.get('ebay');	
 					var linked = this.profile.linkedAcc;
-					linked++;
-					console.log(linked);
+					linked = (infos.linked) ? linked + 1 : linked;
 					Meteor.users.update( { _id: this._id }, {$set: {"profile.ebayNote" : infos.note, "profile.ebayNoteTrust" : infos.noteTrust, "profile.linkedAcc" : linked} } );
 					return infos;
 				}
@@ -169,17 +180,23 @@ Template.user.helpers({
 				var id = this.profile.bnbId;
 				if ( id ) {
 					Meteor.call("getAirbnbInfoswithID", id, function(error, result){
-						var random = ((Math.random() * 5) + 1).toFixed(2);
-						if ( random > 5 ) {
-							random = Math.floor(random);
+						if (error) {
+							var infos_set = {"linked" : false};
+							Session.set('bla', infos_set);
 						}
-						var infos_set = {"note" : random, "nbAvis" : result.data.results.collection1[0].nb_avis.text};
-						Session.set('bnb', infos_set);
+						else {
+							
+							var random = ((Math.random() * 5) + 1).toFixed(2);
+							if ( random > 5 ) {
+								random = Math.floor(random);
+							}
+							var infos_set = {"note" : random, "nbAvis" : result.data.results.collection1[0].nb_avis.text, "linked" : true};
+							Session.set('bnb', infos_set);
+						}
 					});
 					var infos = Session.get('bnb');
 					var linked = this.profile.linkedAcc;
-					linked++;
-					console.log(linked);
+					linked = (infos.linked) ? linked + 1 : linked;
 					Meteor.users.update( { _id: this._id }, {$set: {"profile.bnbNote" : infos.note, "profile.bnbNbAvis" : infos.nbAvis, "profile.linkedAcc" : linked} } );
 					return infos;
 				}
