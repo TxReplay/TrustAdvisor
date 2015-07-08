@@ -19,7 +19,8 @@ Template.register.events
 					profile : {
 						username: $username.value,
 						nom: $nom.value,
-						prenom : $prenom.value
+						prenom : $prenom.value,
+						linkedAcc : 0
 					}
 				}, function(err){
           if (err) {

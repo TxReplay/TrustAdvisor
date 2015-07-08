@@ -2,8 +2,9 @@
 	<div class="row">
 		<div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
 			<h1> Profil de {{ nom }} {{ prenom }}  :</h1>			
-			<div class="margin">Mail : {{ mail }} </div>
-			<div class="margin">nom d'Utilisateur : {{ username }} </div>
+			<div>Mail : {{ mail }} </div>
+			<div>nom d'Utilisateur : {{ username }} </div>
+			<div>{{ trustIndicator }}</div>
 		</div>
 	</div>
 	<div class="row">
@@ -42,21 +43,41 @@
 	<div class="row">
 		{{ #if blablaAccount }}
 			<h1> Vos infos blablaCar</h1>
-			Note : {{ blablaInfos.note }}/5
-			<br>
-			Nombre d'avis {{ blablaInfos.nbCom }}
+			{{ #if blablaInfos.nbAvis }}
+				Note : {{ blablaInfos.note }}/5
+				<br>
+				Nombre d'avis {{ blablaInfos.nbAvis }}
+			{{ else }}
+					<div class="loader">
+					Nous recupérons les infos de votre compte, veuillez patienter
+					</div>
+			{{ /if }}
 		{{ /if }}
+		
 		{{ #if bnbAccount }}
 			<h1> Vos infos BNB </h1>
-			note: random
-			<br>
-			Nombre d'avis : {{ bnbInfos.nbCom }}
+			{{ #if bnbInfos.nbAvis }}
+				note: {{ bnbInfos.note }}
+				<br>
+				Nombre d'avis : {{ bnbInfos.nbAvis }}
+			{{ else }}
+				<div class="loader">
+				Nous recupérons les infos de votre compte, veuillez patienter
+				</div>
+			{{ /if }}
 		{{ /if }}
+		
 		{{ #if ebayAccount }}
 			<h1> Vos infos eBay</h1>
-			Note : {{ ebayInfos.note }}
-			<br>
-			
+			{{ #if ebayInfos.note }}
+				Evaluation : {{ ebayInfos.note }}% D'avis positifs
+				Note ebayTrust : {{ ebayInfos.noteTrust }}
+				<br>
+			{{ else }}
+					<div class="loader">
+					Nous recupérons les infos de votre compte, veuillez patienter
+					</div>
+			{{ /if }}
 		{{ /if }}
 	</div>
 

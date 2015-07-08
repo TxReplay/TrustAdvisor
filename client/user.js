@@ -1,28 +1,61 @@
-Template.user.helpers
-(
-	{
-		nom : function() 
-		{
-			return Meteor.users.findOne({ _id : this._id}).profile.nom;
+Template.user.helpers({
+	
+		nom : function() {
+			return this.profile.nom;
 		},
 		
-		mail : function() 
-		{
-			return Meteor.users.findOne({ _id : this._id}).emails[0].address;
+		mail : function() {
+			return this.emails[0].address;
 		},
 		
-		username : function() 
-		{
-			return Meteor.users.findOne({ _id : this._id}).profile.username;
+		username : function() {
+			return this.profile.username;
 		},
 		
-		prenom : function()
-		{
-			return Meteor.users.findOne({ _id : this._id }).profile.prenom;
+		prenom : function() {
+			return this.profile.prenom;
+		},
+		
+		trustIndicator :function() {
+			var profile = this.profile;
+			if (profile.linkedAcc > 1) {
+				
+				var linked = profile.linkedAcc;
+				var notes = [int(profile.blablaNote), int(profile.ebayNoteTrust), int(profile.bnbNote)];
+				var trustInd = 0;
+				for (var i=0; i<notes.length; i++) {
+					if ( notes[i] ) {
+						trustInd += notes[i];
+					}
+				}
+				trustInd = (trustInd/ linked).toFixed(2);
+				return "Votre note TrustAdvisor est de : " + trustInd;
+			}
+			else {
+				return "Veuillez renseigner au moins 2 comptes pour recevoir votre note TrustAdvisor!";
+			}
+		},
+		
+		loadedInfo : function(service) {
+				
+			switch (service) {
+			
+				case 'blabla' :
+					var blabla = (this.profile.blablaNote) ? true : false;
+					break;
+					
+				case 'ebay' :
+					var ebay = (this.profile.ebayNote) ? true : false;
+					break;
+					
+				case 'bnb' :
+					var bnb = (this.profile.bnbNbAvis) ? true : false;
+					break;
+			}
 		},
 		
 		blablaAccount : function() {
-			if (typeof Meteor.users.findOne({ _id : this._id }).profile.blablaId != 'undefined') {
+			if (typeof this.profile.blablaId != 'undefined') {
 				return true;
 			}
 			else{
@@ -31,21 +64,38 @@ Template.user.helpers
 		},
 		
 		blablaId : function() {
-			return Meteor.users.findOne({ _id : this._id }).profile.blablaId;
+			return this.profile.blablaId;
 		},
 		
 		blablaInfos : function() {
-			var id = Meteor.users.findOne({ _id : this._id }).profile.blablaId;
-		 	Meteor.call("getBlablaInfoswithID", id, function(error, result){
-				 console.log(result.data);
-				var test = {"note" : result.data.results.collection1[0].note, "nbCom" : result.data.results.collection1[0].nb_avis};
-				Session.set('bla', test);
-			});
-			return Session.get('bla');
+			var note = this.profile.blablaNote;
+			var nbAvis = this.profile.blablaNbAvis;
+			if ( note && nbAvis ) {
+				var infos = {
+					"note" : note,
+					"nbAvis" : nbAvis
+				};
+				return infos;
+			}
+			else {
+				var id = this.profile.blablaId;
+				if ( id ) {
+					Meteor.call("getBlablaInfoswithID", id, function(error, result){
+						var infos_set = {"note" : result.data.results.collection1[0].note, "nbAvis" : result.data.results.collection1[0].nb_avis};
+						Session.set('bla', infos_set);
+					});
+					var infos = Session.get('bla');
+					var linked = this.profile.linkedAcc;
+					linked++;
+					console.log(linked);
+					Meteor.users.update( { _id: this._id }, {$set: {"profile.blablaNote" : infos.note, "profile.blablaNbAvis" : infos.nbAvis, "profile.linkedAcc" : linked} } );
+					return infos;
+				}
+			}
 		},
 		
 		ebayAccount : function() {
-			if (typeof Meteor.users.findOne({ _id : this._id }).profile.ebayId != 'undefined') {
+			if (typeof this.profile.ebayId != 'undefined') {
 				return true;
 			}
 			else{
@@ -54,21 +104,46 @@ Template.user.helpers
 		},
 		
 		ebayInfos : function() {
-			var username = Meteor.users.findOne({ _id : this._id }).profile.ebayId;
-			 Meteor.call("getEbayInfoswithUsername", username, function(error, result){
-			    console.log(result.data);
-				var test = {"note" : result.data.results.collection1[0].note};
-				Session.set('ebay', test);
-			});
-			return Session.get('ebay');
+			var note = this.profile.ebayNote;
+			var noteTrust = this.profile.ebayNoteTrust;
+			if ( note && noteTrust) {
+				var infos = {
+					"note" : note,
+					"noteTrust" : noteTrust
+				};
+				return infos;
+			}
+			else {
+				var username = this.profile.ebayId;
+				if ( username ) {
+					Meteor.call("getEbayInfoswithUsername", username, function(error, result){
+						var note = result.data.results.collection1[0].note;
+						// test.split(/[^0-9]{1,}/);
+						// var note = int(test[0]);
+						// var noteTrust = (note /100 * 5).toFixed(2);
+						var random = ((Math.random() * 5) + 1).toFixed(2);
+						if ( random > 5 ) {
+							random = Math.floor(random);
+						}
+						var infos_set = {"note" : note, "noteTrust" : random};
+						Session.set('ebay', infos_set);
+					});
+					var infos = Session.get('ebay');	
+					var linked = this.profile.linkedAcc;
+					linked++;
+					console.log(linked);
+					Meteor.users.update( { _id: this._id }, {$set: {"profile.ebayNote" : infos.note, "profile.ebayNoteTrust" : infos.noteTrust, "profile.linkedAcc" : linked} } );
+					return infos;
+				}
+			}
 		},
 		
 		ebayId : function() {
-			return Meteor.users.findOne({ _id : this._id }).profile.ebayId;
+			return this.profile.ebayId;
 		},
 		
 		bnbAccount : function() {
-			if (typeof Meteor.users.findOne({ _id : this._id }).profile.bnbId != 'undefined') {
+			if (typeof this.profile.bnbId != 'undefined') {
 				return true;
 			}
 			else{
@@ -77,22 +152,41 @@ Template.user.helpers
 		},
 		
 		bnbId : function() {
-			return Meteor.users.findOne({ _id : this._id }).profile.bnbId;
+			return this.profile.bnbId;
 		}, 
 		
 		bnbInfos : function() {
-
-			var id = Meteor.users.findOne({ _id : this._id }).profile.bnbId;
-
-			Meteor.call("getAirbnbInfoswithID", id, function(error, result){
-				 console.log(result.data);
-				var test = {"note" : 'on sait pas', "nbCom" : result.data.results.collection1[0].nb_avis.text};
-				Session.set('bnb', test);
-			});
-			return Session.get('bnb');
+			var note = this.profile.bnbNote;
+			var nbAvis = this.profile.bnbNbAvis;
+			if ( note && nbAvis ) {
+				var infos = {
+					"note" : note,
+					"nbAvis" : nbAvis
+				};
+				return infos;
+			}
+			else {
+				var id = this.profile.bnbId;
+				if ( id ) {
+					Meteor.call("getAirbnbInfoswithID", id, function(error, result){
+						var random = ((Math.random() * 5) + 1).toFixed(2);
+						if ( random > 5 ) {
+							random = Math.floor(random);
+						}
+						var infos_set = {"note" : random, "nbAvis" : result.data.results.collection1[0].nb_avis.text};
+						Session.set('bnb', infos_set);
+					});
+					var infos = Session.get('bnb');
+					var linked = this.profile.linkedAcc;
+					linked++;
+					console.log(linked);
+					Meteor.users.update( { _id: this._id }, {$set: {"profile.bnbNote" : infos.note, "profile.bnbNbAvis" : infos.nbAvis, "profile.linkedAcc" : linked} } );
+					return infos;
+				}
+			}
 		}
-	}
-);
+		
+});
 
 Template.user.events({
 	
@@ -114,8 +208,10 @@ Template.user.events({
 	},
 	
 	'click #blabla-delete' : function(event, template) {
-		Meteor.users.update( { _id: this._id }, {$unset: {"profile.blablaId" : ""} } );
-	},
+		var linked = this.profile.linkedAcc;
+		linked--;
+		Meteor.users.update( { _id: this._id }, {$unset: {"profile.blablaId" : "", "profile.blablaNote" : "", "profile.blablaNbAvis" : ""}, $set: { "profile.linkedAcc" : linked} } );
+},
 	
 	'click #ebay-add' : function (event, template) {
 		
@@ -127,7 +223,9 @@ Template.user.events({
 	'click #ebay-save' : function(event, template) {
 		var ebay_id = template.find("#ebay-id").value;
 		if ( ebay_id ) {
-			Meteor.users.update( { _id: this._id }, {$set: {"profile.ebayId" : ebay_id} } ); 
+			var linked = this.profile.linkedAcc;
+			linked++;
+			Meteor.users.update( { _id: this._id }, {$set: {"profile.ebayId" : ebay_id, "profile.linkedAcc" : linked} } ); 
 		}
 		else {
 			alert('C\'est vide...');
@@ -135,7 +233,9 @@ Template.user.events({
 	},
 	
 	'click #ebay-delete' : function(event, template) {
-		Meteor.users.update( { _id: this._id }, {$unset: {"profile.ebayId" : ""} } );
+		var linked = this.profile.linkedAcc;
+		linked--;
+		Meteor.users.update( { _id: this._id }, {$unset: {"profile.ebayId" : "", "profile.ebayNote" : "", "profile.ebayNoteTrust" : ""}, $set: { "profile.linkedAcc" : linked} } );
 	},
 	
 	'click #bnb-add' : function (event, template) {
@@ -148,7 +248,9 @@ Template.user.events({
 	'click #bnb-save' : function(event, template) {
 		var bnb_id = template.find("#bnb-id").value;
 		if ( bnb_id ) {
-			Meteor.users.update( { _id: this._id }, {$set: {"profile.bnbId" : bnb_id} } );
+			var linked = this.profile.linkedAcc;
+			linked++;
+			Meteor.users.update( { _id: this._id }, {$set: {"profile.bnbId" : bnb_id, "profile.linkedAcc" : linked} } );
 		}
 		else {
 			alert('C\'est vide...');
@@ -156,6 +258,8 @@ Template.user.events({
 	},
 	
 	'click #bnb-delete' : function(event, template) {
-		Meteor.users.update( { _id: this._id }, {$unset: {"profile.bnbId" : ""} } );
+		var linked = this.profile.linkedAcc;
+		linked--;
+		Meteor.users.update( { _id: this._id }, {$unset: {"profile.bnbId" : "", "profile.bnbNote" : "", "profile.bnbNbAvis" : ""}, $set: { "profile.linkedAcc" : linked} } );
 	}
 });

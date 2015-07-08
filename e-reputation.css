@@ -7,3 +7,8 @@ display: block;
 .hidden {
 display: none;
 }
+
+.loader{
+background: url('/public/img/loader.gif') no-repeat left center;
+padding-left: 64px;
+}
