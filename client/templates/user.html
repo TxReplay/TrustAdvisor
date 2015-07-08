@@ -1,15 +1,12 @@
 <template name="user">
 	<div class="row">
-		<div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
-			<h1> Profil de {{ nom }} {{ prenom }}  :</h1>			
+			<h1> Profil de {{ nom }} {{ prenom }}  :</h1>
 			<div>Mail : {{ mail }} </div>
 			<div>nom d'Utilisateur : {{ username }} </div>
 			<div>{{ trustIndicator }}</div>
-		</div>
 	</div>
 	<div class="row">
 		<h2>Mes comptes </h2>
-		<div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
 			{{ #if blablaAccount }}
 				ton id Blablacar : {{ blablaId }}
 				<button id="blabla-delete">X</button>
@@ -18,8 +15,6 @@
 				<input type="text" id="blabla-id" class="hidden" placeholder="Votre pseudo Blablacar"/>
 				<button id="blabla-save" class="hidden" >Enregistrer</button>
 			{{ /if }}
-		</div>
-		<div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
 			{{ #if ebayAccount }}
 				ton pseudo Ebay : {{ ebayId }}
 				<button id="ebay-delete">X</button>
@@ -28,8 +23,6 @@
 				<input type="text" id="ebay-id" class="hidden" placeholder="Votre pseudo Ebay"/>
 				<button id="ebay-save" class="hidden">Enregistrer</button>
 			{{ /if }}
-		</div>
-		<div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
 			{{ #if bnbAccount }}
 				ton id Bnb : {{ bnbId }}
 				<button id="bnb-delete">X</button>
@@ -38,7 +31,6 @@
 				<input type="text" id="bnb-id" class="hidden" placeholder="Votre pseudo AirBnb"/>
 				<button id="bnb-save" class="hidden">Enregistrer</button>
 			{{ /if }}
-		</div>
 	</div>
 	<div class="row">
 		{{ #if blablaAccount }}

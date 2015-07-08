@@ -1,14 +1,14 @@
 /* CSS declarations go here */
 
 .visible {
-display: block;
+    display: block;
 }
 
 .hidden {
-display: none;
+    display: none;
 }
 
-.loader{
-background: url('/public/img/loader.gif') no-repeat left center;
-padding-left: 64px;
+.loader {
+    background: url('/public/img/loader.gif') no-repeat left center;
+    padding-left: 64px;
 }

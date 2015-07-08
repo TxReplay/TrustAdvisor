@@ -1,7 +1,6 @@
 // Global access
 test = new Mongo.Collection( "test" );
 
-
 if ( Meteor.isClient )
 {
 	Template.layout.events
@@ -11,6 +10,6 @@ if ( Meteor.isClient )
 			Meteor.logout();
 			Router.go('/');
 		},
-		
+
 	});
 }

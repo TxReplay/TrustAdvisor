@@ -1,0 +1,10 @@
+<template name="navigation">
+    <a class="accueil btn btn-primary" href="{{pathFor 'home'}}">Accueil</a>
+    {{ #if currentUser }}
+        <a class="profil btn btn-primary" href="{{ pathFor 'user' _id = currentUser._id }}">Mon profil</a>
+        <a class="logout btn btn-warning" href="{{ pathFor 'home' }}">Deconnexion</a>
+    {{ else }}
+        <a class="login btn btn-primary" href="{{ pathFor 'login' }}">Se connecter</a>
+        <a class="register btn btn-primary" href="{{ pathFor 'register' }}">S'enregistrer</a>
+    {{ /if }}
+</template>
