@@ -110,43 +110,43 @@ Template.user.helpers({
 
     ebayInfos : function() {
         var note = this.profile.ebayNote;
-        var noteTrust = this.profile.ebayNoteTrust;
-        if ( note && noteTrust) {
-            var infos = {
-                "note" : note,
-                "noteTrust" : noteTrust
-            };
-            return infos;
-        }
-        else {
-            var username = this.profile.ebayId;
-            if ( username ) {
-                Meteor.call("getEbayInfoswithUsername", username, function(error, result){
-                    if (error) {
-                        var infos_set = {"linked" : false};
-                        Session.set('bla', infos_set);
-                    }
-                    else {
-
-                        var note = result.data.results.collection1[0].note;
-                        // test.split(/[^0-9]{1,}/);
-                        // var note = int(test[0]);
-                        // var noteTrust = (note /100 * 5).toFixed(2);
-                        var random = ((Math.random() * 5) + 1).toFixed(2);
-                        if ( random > 5 ) {
-                            random = Math.floor(random);
-                        }
-                        var infos_set = {"note" : note, "noteTrust" : random, "linked" : true};
-                        Session.set('ebay', infos_set);
-                    }
-                });
-                var infos = Session.get('ebay');
-                var linked = this.profile.linkedAcc;
-                linked = (infos.linked) ? linked + 1 : linked;
-                Meteor.users.update( { _id: this._id }, {$set: {"profile.ebayNote" : infos.note, "profile.ebayNoteTrust" : infos.noteTrust, "profile.linkedAcc" : linked} } );
-                return infos;
-            }
-        }
+			var noteTrust = this.profile.ebayNoteTrust;
+			if ( note && noteTrust) {
+				var infos = {
+					"note" : note,
+					"noteTrust" : noteTrust
+				};
+				return infos;
+			}
+			else {
+				var username = this.profile.ebayId;
+				if ( username ) {
+					Meteor.call("getEbayInfoswithUsername", username, function(error, result){
+						if (error) {
+							var infos_set = {"linked" : false};
+							Session.set('bla', infos_set);
+						}
+						else {
+								
+							var note = result.data.results.collection1[0].note;
+							// test.split(/[^0-9]{1,}/);
+							// var note = parseInt(test[0]);
+							// var noteTrust = (note /100 * 5).toFixed(2);
+							var random = ((Math.random() * 5) + 1).toFixed(2);
+							if ( random > 5 ) {
+								random = Math.floor(random);
+							}
+							var infos_set = {"note" : note, "noteTrust" : random, "linked" : true};
+							Session.set('ebay', infos_set);
+						}
+					});
+					var infos = Session.get('ebay');	
+					var linked = this.profile.linkedAcc;
+					linked = (infos.linked) ? linked + 1 : linked;
+					Meteor.users.update( { _id: this._id }, {$set: {"profile.ebayNote" : infos.note, "profile.ebayNoteTrust" : infos.noteTrust, "profile.linkedAcc" : linked} } );
+					return infos;
+				}
+			}
     },
 
     ebayId : function() {
