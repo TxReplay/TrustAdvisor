@@ -1,7 +1,8 @@
 Template.user.helpers({
 
     nom : function() {
-        return this.profile.nom;
+			Session.set('ebay_call', 0);
+			return this.profile.nom;
     },
 
     mail : function() {
@@ -23,20 +24,22 @@ Template.user.helpers({
     trustIndicator :function() {
         var profile = this.profile;
         if (profile.linkedAcc > 1) {
-            var linked = parseInt(profile.blablaNbAvis) + parseInt(profile.ebayNbAvis) + parseInt(profile.bnbNbAvis);
+            var avis = [parseInt(profile.blablaNbAvis), parseInt(profile.ebayNbAvis), parseInt(profile.bnbNbAvis)];
             var notes = [profile.blablaNote, profile.ebayNoteTrust, profile.bnbNote];
             var trustInd = 0;
+						var avisTotal = 0;
             for (var i=0; i<notes.length; i++) {
-                if (notes[i]) {
-                    trustInd += parseFloat(notes[i]);
+                if (notes[i] && avis[i] != NaN) {
+                    trustInd += parseFloat(notes[i]) * avis[i];
+										avisTotal += avis[i];
                 }
             }
-            trustInd = (trustInd/ linked).toFixed(2);
-            var text = "Votre note TrustAdvisor est de : " + trustInd;
+            trustInd = (trustInd/ avisTotal).toFixed(2);
+            var text = "Your TrustAdvisor rank is : " + trustInd;
             return text;
         }
         else {
-            return "Veuillez renseigner au moins 2 comptes pour recevoir votre note TrustAdvisor!";
+            return "You need to associate at least 2 accounts in order to get your TrustAdvisor rank!";
         }
     },
 
@@ -129,32 +132,41 @@ Template.user.helpers({
 			}
 			else {
 				var username = this.profile.ebayId;
-				if ( username ) { 
-					Meteor.call("getEbayInfoswithUsername", username, function(error, result){
-						if (error) {
-							var infos_set = {"linked" : false};
-							Session.set('ebay', infos_set);
+				if ( username ) {
+					var call = Session.get('ebay_call');
+					if (call < 10) {
+						Meteor.call("getEbayInfoswithUsername", username, function(error, result){
+							if (error) {
+								var infos_set = {"linked" : false};
+								Session.set('ebay', infos_set);
+							}
+							else {
+								var test = result.data.results.collection1[0].note;
+								//Evaluations positives (12 derniers mois) : 99,5%
+								test = test.replace(/[^0-9]{0,}[0-9]{1,}[^0-9]{0,}/, "").replace(/%/, "");
+								test = parseFloat(test);
+								var noteTrust = (test /100 * 5).toFixed(2);
+								var avis = result.data.results.collection1[0].nb_avis;
+								avis = avis.split(/[^0-9]{1,}/);
+								var infos_set = {"note" : note, "noteTrust" : noteTrust, "linked" : true, "nbAvis" : parseInt(avis[1])};
+								Session.set('ebay', infos_set);
+							}
+						});
+						call++;
+						Session.set('ebay_call', call);
+						var infos = Session.get('ebay');
+						if ( !this.profile.linkedEbay ) {
+							var linked = this.profile.linkedAcc;
+							linked = (infos.linked) ? linked + 1 : linked;
+							Meteor.users.update( { _id: this._id }, {$set: {"profile.ebayNote" : infos.note, "profile.ebayNoteTrust" : infos.noteTrust, "profile.ebayNbAvis" : infos.nbAvis, "profile.linkedAcc" : linked, "profile.linkedEbay" : true} } );
 						}
-						else {
-							var test = result.data.results.collection1[0].note;
-							//Evaluations positives (12 derniers mois) : 99,5%
-							test = test.replace(/[^0-9]{0,}[0-9]{1,}[^0-9]{0,}/, "").replace(/%/, "");
-							test = parseFloat(test);
-							var noteTrust = (test /100 * 5).toFixed(2);
-							var avis = result.data.results.collection1[0].nb_avis;
-							avis = avis.split(/[^0-9]{1,}/);
-							var infos_set = {"note" : note, "noteTrust" : noteTrust, "linked" : true, "nbAvis" : parseInt(avis[1])};
-							Session.set('ebay', infos_set);
-						}
-					});
-					var infos = Session.get('ebay');
-					if ( !this.profile.linkedEbay ) {
-						var linked = this.profile.linkedAcc;
-						linked = (infos.linked) ? linked + 1 : linked;
-						Meteor.users.update( { _id: this._id }, {$set: {"profile.ebayNote" : infos.note, "profile.ebayNoteTrust" : infos.noteTrust, "profile.ebayNbAvis" : infos.nbAvis, "profile.linkedAcc" : linked, "profile.linkedEbay" : true} } );
+						setTimeout( function(){} , 4000);
+						return infos;
 					}
-					setTimeout( function(){} , 4000);
-					return infos;
+					else {
+						var infos = {"note" : "Unable to get your", "noteTrust" : "Account informations, try to add it again", "fail" : true};
+						return infos;
+					}
 				}
 			}
     }, 
@@ -218,7 +230,7 @@ Template.user.helpers({
 });
 
 Template.user.events({
-
+		
     'click #blabla-delete' : function(event, template) {
         var linked = this.profile.linkedAcc;
         linked--;
@@ -237,18 +249,28 @@ Template.user.events({
         Meteor.users.update( { _id: this._id }, {$unset: {"profile.bnbId" : "", "profile.bnbNote" : "", "profile.bnbNbAvis" : "", "profile.pseudoBnb" : ""}, $set: { "profile.linkedAcc" : linked, "profile.linkedBnb" : false} } );
     },
 		
-		'click .profil-add' : function() {
+		'click #bnb-detail' : function() {
+		
+				$("#bnb-card").toggleClass("detail");
+		},
+		
+		'click #ebay-detail' : function() {
+		
+				$("#ebay-card").toggleClass("detail");
+		},
+		
+		'click #blabla-detail' : function() {
+		
+				$("#blabla-card").toggleClass("detail");
+		},
+		
+		'click .profil-add' : function(event, template) {
 			var user = Meteor.users.findOne({ _id : this._id });
 			var shareDialogInfo = {
-				template: Template.addAccountDialog,
-				title: "Link an account",
+				template: Template.linkAcc,
+				 modalDialogClass: "custom-modal-dialog", //optional
+			    modalBodyClass: "custom-modal-body", //optional
 				removeOnHide: true, //optional. If this is true, modal will be removed from DOM upon hiding
-				buttons: {
-					"ok": {
-						class: 'btn-info',
-						label: 'Done'
-					}
-				},
 				doc: {  // Provide data context for Template.appShareDialog
 					userId : function() {
 					

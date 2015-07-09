@@ -64,12 +64,21 @@
     -moz-transition: border-color .5s ease;
     -o-transition: border-color .5s ease;
     transition: border-color .3s ease;
+		
+		-webkit-transition: height 0.8s;
+		-moz-transition: height 0.8s;
+		transition: height 0.8s;
+}
+
+.category-card-profil.detail {
+
+height: 180px;
 }
 
 .category-card-profil:hover { border-color: #b3b3b3; }
 
-.category-card-profil a:hover > .icon-share,
-.category-card-profil a:hover > .icon-link {
+.category-card-profil a:hover > .icon-detail,
+.category-card-profil a:hover > .icon-delete {
     background: #fc3775;
 }
 
@@ -78,6 +87,66 @@
     font-size: 16px;
     text-align: center;
     text-transform: uppercase;
+}
+
+.icon-detail {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: #b3b3b3;
+
+    -webkit-mask-image: url("img/profil/ic-options.svg");
+    mask-image: url("img/profil/ic-options.svg");
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-size: 20%;
+    mask-size: 20%;
+
+    -moz-mask-image: url("img/profil/ic-options.svg");
+    mask-image: url("img/profil/ic-options.svg");
+    -moz-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -moz-mask-size: 20%;
+    mask-size: 20%;
+
+    -webkit-transition: background .3s ease;
+    -moz-transition: background .3s ease;
+    -o-transition: background .3s ease;
+    transition: background .3s ease;
+
+    display: block;
+    width: 20px;
+    height: 20px;
+}
+
+.icon-delete {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #b3b3b3;
+
+    -webkit-mask-image: url("img/profil/ic-close.svg");
+    mask-image: url("img/profil/ic-close.svg");
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-size: 100%;
+    mask-size: 100%;
+
+		-moz-mask-image: url("img/profil/ic-close.svg");
+    mask-image: url("img/profil/ic-close.svg");
+    -moz-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -moz-mask-size: 100%;
+    mask-size: 100%;
+		
+    -webkit-transition: background .3s ease;
+    -moz-transition: background .3s ease;
+    -o-transition: background .3s ease;
+    transition: background .3s ease;
+
+    display: block;
+    width: 25px;
+    height: 25px;
 }
 
 .profil-link-add {
@@ -98,4 +167,50 @@
 
 .mini-graphe {
     margin: 10px 15px;
+}
+
+/* link account */
+.new-account {
+margin-top: 20px;
+font-size: 22px;
+text-align: center;
+}
+
+.new-note {
+
+margin-top: 35px;
+font-size: 16px;
+text-align: center;
+}
+
+.form-link-account {
+
+width: 50%;
+margin-left: auto;
+margin-right: auto;
+}
+
+.form-exist {
+font-size: 18px;
+}
+
+.form-submit{
+	color: #FFF;
+	background: #FF3366;
+	width: 150px;
+	margin: 0 auto;
+	display: block;
+	text-transform: uppercase;
+	transition: 0.2s;
+	-webkit-transition: 0.2s;
+	-moz-transition: 0.2s;
+	-ms-transition: 0.2s;
+	-o-transition: 0.2s;
+}
+
+.new-available {
+
+margin-top: 55px;
+font-size: 22px;
+text-align: center;
 }
