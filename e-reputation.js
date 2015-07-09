@@ -105,9 +105,10 @@ if ( Meteor.isClient )
     },
 
     'click #blabla-save' : function(event, template) {
-        var blabla_id = template.find("#blabla-id").value;
+				var user = Meteor.users.findOne(this.userId);
+        var blabla_id = template.find("#blabla-id-input").value;
         if ( blabla_id ) {
-            Meteor.users.update( { _id: this._id }, {$set: {"profile.blablaId" : "0KjfoFenIKvojq2_1a4PYw", "profile.pseudoBlabla" : blabla_id} } );
+            Meteor.users.update( { _id: user._id }, {$set: {"profile.blablaId" : "0KjfoFenIKvojq2_1a4PYw", "profile.pseudoBlabla" : blabla_id} } );
         }
         else {
             alert('C\'est vide...');
@@ -122,16 +123,17 @@ if ( Meteor.isClient )
     },
 
     'click #ebay-save' : function(event, template) {
-        var ebay_id = template.find("#ebay-id").value;
-        if ( ebay_id ) {
-            Meteor.users.update( { _id: this._id }, {$set: {"profile.ebayId" : username} } );
+				var user = Meteor.users.findOne(this.userId);
+        var username = template.find("#ebay-id-input").value;
+        if ( username ) {
+            Meteor.users.update( { _id: user._id }, {$set: {"profile.ebayId" : username} } );
         }
         else {
             alert('C\'est vide...');
         }
     },
 		
-				'click #bnb-add' : function (event, template) {
+		'click #bnb-add' : function (event, template) {
 
         $("#bnb-add").toggleClass('visible hidden');
         $("#bnb-id").toggleClass('visible hidden');
@@ -139,9 +141,10 @@ if ( Meteor.isClient )
     },
 
     'click #bnb-save' : function(event, template) {
-        var bnb_id = template.find("#bnb-id").value;
+				var user = Meteor.users.findOne(this.userId);
+        var bnb_id = template.find("#bnb-id-input").value;
         if ( bnb_id ) {
-            Meteor.users.update( { _id: this._id }, {$set: {"profile.bnbId" : "7144941", "profile.pseudoBnb" : bnb_id} } );
+            Meteor.users.update( { _id: user._id }, {$set: {"profile.bnbId" : "2241893", "profile.pseudoBnb" : bnb_id} } );
         }
         else {
             alert('C\'est vide...');
