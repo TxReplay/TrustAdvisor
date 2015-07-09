@@ -1,6 +1,7 @@
 .sub_header_container {
     min-height: 150px;
     background: #f9f9f9;
+    border-bottom: 1px solid #EAEAEA;
 }
 
 .sub_categories {
