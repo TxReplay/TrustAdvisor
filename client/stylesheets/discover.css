@@ -59,3 +59,12 @@
 	background-color: #FF3366;
 	color: #FFF;
 }
+.result-hide{
+	display: none;
+}
+#result h3{
+	font-family: 'Raleway';
+	color: #FF3366;
+	text-align: center;
+	margin: 20px 0 20px 0;
+}
