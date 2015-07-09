@@ -1,57 +1,56 @@
-.profil-header {
+.container-fluid {
+    padding: 0;
+    widows: 100%;
+}
 
-padding-left: 10%;
-padding-right: 15%;
-background-color: #f9f9f9;
+.profil-header {
+    padding: 50px;
+    height: 250px;
 }
 
 .profil-picture {
-
-float: left;
-margin-right: 50px;
-height: 150px;
-width: 150px;
+    float: left;
+    margin-right: 50px;
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
 }
 
 .profil-infos {
-
-overflow: hidden;
-float: left;
+    overflow: hidden;
+    float: left;
+    width: 80%;
+    color: #9f9f9f;
 }
 
 .profil-name {
-
-font-family: "Roboto";
-font-size: 24px;
-margin-bottom: 10px;
+    font-family: "Roboto";
+    font-size: 24px;
+    margin-bottom: 10px;
 }
 
 .profil-description {
-
-padding-left: 20px;
-border-left: 3px solid #EAEAEA;
+    padding-left: 20px;
+    border-left: 3px solid #EAEAEA;
 }
 
 .profil-note {
-
-font-family: "Roboto";
-font-size: 16px;
-float: right;
+    font-family: "Roboto";
+    font-size: 16px;
+    float: right;
 }
 
-.profil-settings {
-
-background: url('img/profil/ic-settings.svg') no-repeat;
+.profil-settings { 
+    width: 25px;
+    float: right;
+    margin: 20px;
 }
 
-.profil-graph {
-
-width: 100%;
-height: 100%;
-background: url('img/profil/graphique.png') no-repeat;
+.profil-graph img {
+    max-width: 100%;
 }
 
-.category-card-profil {
+.category-card-profil {    
     height: 130px;
     border: 3px solid #eaeaea;
     border-radius: 3px;
@@ -66,9 +65,7 @@ background: url('img/profil/graphique.png') no-repeat;
     transition: border-color .3s ease;
 }
 
-.category-card-profil:hover {
-    border-color: #b3b3b3;
-}
+.category-card-profil:hover { border-color: #b3b3b3; }
 
 .category-card-profil a:hover > .icon-share,
 .category-card-profil a:hover > .icon-link {
@@ -76,24 +73,19 @@ background: url('img/profil/graphique.png') no-repeat;
 }
 
 .category-title {
-
-font-family: "Roboto";
-font-size: 16px;
-text-transform: uppercase;
+    font-family: "Roboto";
+    font-size: 16px;
+    text-transform: uppercase;
 }
 
 .profil-link-add {
-
-width: 50px;
-height: 50px;
-margin-left: auto;
-margin-right: auto;
-background: url('client/img/profil/ic-filters.svg');
+    width: 50px;
+    height: 50px;
+    margin: 0 auto 20px auto;
 }
 
 .profil-link-text {
-
-font-size: 14px;
-text-transform: uppercase;
-text-align: center;
+    font-size: 14px;
+    text-transform: uppercase;
+    text-align: center;
 }

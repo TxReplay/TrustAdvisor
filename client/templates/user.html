@@ -1,21 +1,23 @@
 <template name="user">
-	<div class="container fluid">
+	<div class="sub_header_container">
+		<div class="container-fluid">
+		<img src="/img/profil/edit-profile.png" class="profil-settings" alt="">
 		<div class="profil-header">
-				<div class="profile-picture"></div>
-				<div class="profil-infos">
-					<div class="profil-name">{{ nom }} {{ prenom }}</div>
-					<div class="profil-description">Lorem ipsum desc</div>
-					<div class="profil-note">{{ trustIndicator }}</div>
-				</div>
-				<div class="profil-settings"></div>
+			<img src="/img/profil/avatar.png" alt="Avatar" class="profil-picture">
+			<div class="profil-infos">
+				<div class="profil-name">{{ nom }} {{ prenom }}</div>
+				<div class="profil-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores, excepturi, ad. Earum eos consectetur quae, culpa, voluptatum alias nemo commodi. Doloribus repudiandae natus deserunt illo culpa deleniti eum vitae sint!</div>
+				<!-- <div class="profil-note">{{ trustIndicator }}</div> -->
+			</div>
 		</div>
+	</div>
 	</div>
 	<div class="container">	
 		
 		<div class="row">
 			<div class="col-sm-12">
 				<div class="profil-graph">
-				
+					<a href="#"><img src="/img/profil/graphe.jpg" alt="Graphique"></a>
 				</div>
 			</div>
 			{{ #if blablaAccount }}
@@ -74,8 +76,9 @@
 				</div>
 			{{ /if }}
 			<div class="col-sm-3">
-				<div class="category-card-profil">
+				<div class="category-card-profil profil-add">
 					<div class="profil-link-add">
+						<img src="/img/profil/add-account.png" alt="">
 					</div>
 					<div class="profil-link-text">
 						Link another account

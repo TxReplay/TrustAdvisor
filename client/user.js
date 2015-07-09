@@ -235,7 +235,7 @@ Template.user.events({
         Meteor.users.update( { _id: this._id }, {$unset: {"profile.bnbId" : "", "profile.bnbNote" : "", "profile.bnbNbAvis" : "", "profile.pseudoBnb" : ""}, $set: { "profile.linkedAcc" : linked, "profile.linkedBnb" : false} } );
     },
 		
-		'click .profil-link-add' : function() {
+		'click .profil-add' : function() {
 			var user = Meteor.users.findOne({ _id : this._id });
 			var shareDialogInfo = {
 				template: Template.addAccountDialog,
