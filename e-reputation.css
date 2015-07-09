@@ -9,6 +9,6 @@
 }
 
 .loader {
-    background: url('/public/img/loader.gif') no-repeat left center;
+    background: url('img/loader.GIF') no-repeat left center;
     padding-left: 64px;
 }
