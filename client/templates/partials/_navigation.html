@@ -4,7 +4,7 @@
         <a class="profil btn btn-primary" href="{{ pathFor 'user' _id = currentUser._id }}">Mon profil</a>
         <a class="logout btn btn-warning" href="{{ pathFor 'home' }}">Deconnexion</a>
     {{ else }}
-        <a class="login btn btn-primary" href="{{ pathFor 'login' }}">Se connecter</a>
+        <p class="login btn btn-primary">Se connecter</p>
         <a class="register btn btn-primary" href="{{ pathFor 'register' }}">S'enregistrer</a>
     {{ /if }}
 </template>

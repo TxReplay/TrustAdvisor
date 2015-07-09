@@ -3,61 +3,103 @@ test = new Mongo.Collection( "test" );
 
 if ( Meteor.isClient )
 {
+
 	Template.navigation.events
 	({
 		'click .logout' : function ( event, template )
 		{
-			
-
-			new Confirmation({
-			  message: "Are you sure ?",
-			  title: "Confirmation",
-			  cancelText: "Cancel",
-			  okText: "Ok",
-			  success: true // wether the button should be green or red
-			}, function (ok) {
-
-				
-
-				if (ok) {
-					Meteor.logout();
-					Router.go('/');
-				};
-			  // ok is true if the user clicked on "ok", false otherwise
-			});
+			Meteor.logout();
+			Router.go('/');
 		},
 
-	});
+		'click .login' : function ( event, template )
+		{
+			var shareDialogInfo = {
+			    template: Template.loginSignup,
+			    modalDialogClass: "custom-modal-dialog", //optional
+			    modalBodyClass: "custom-modal-body", //optional
+			    modalFooterClass: "custom-modal-footer",//optional
+			    removeOnHide: true, //optional. If this is true, modal will be removed from DOM upon hiding
+			    doc: {  // Provide data context for Template.appShareDialog
+			      app: "My Application"
+			    }
+			  }
 
-
-	Meteor.startup(function(){
-	  var shareDialogInfo = {
-	    template: Template.appShareDialog,
-	    title: "Share the app",
-	    modalDialogClass: "share-modal-dialog", //optional
-	    modalBodyClass: "share-modal-body", //optional
-	    modalFooterClass: "share-modal-footer",//optional
-	    removeOnHide: true, //optional. If this is true, modal will be removed from DOM upon hiding
-	    buttons: {
-	      "cancel": {
-	        class: 'btn-danger',
-	        label: 'Cancel'
-	      },
-	      "ok": {
-	        closeModalOnClick: false, // if this is false, dialog doesnt close automatically on click
-	        class: 'btn-info',
-	        label: 'Ok'
-	      }
-
-	    },
-	    doc: {  // Provide data context for Template.appShareDialog
-	      app: "My Application"
-	    }
-	  }
-
-	  var rd = ReactiveModal.initDialog(shareDialogInfo);
-
-	  rd.show();
+		  	window.popupLogin = ReactiveModal.initDialog(shareDialogInfo);
+			window.popupLogin.show();
+		}
 
 	});
+
+	Template.loginSignup.events
+	({
+		
+		'click #login' : function ( e, t )
+		{
+
+			console.log('click button popup');
+
+			var email = t.find('#login-email').value;
+	        var password = t.find('#login-password').value;
+
+	        Meteor.loginWithPassword(email, password, function (err) {
+	            if (err) {
+	                // alert('Mail ou mot de passe incorect');
+	            }
+	            else {
+	                Router.go('/');
+	                window.popupLogin.hide();
+	            }
+	        });
+	        return false;
+
+		},
+
+        'click #submit_user': function (event, template) {
+
+        	if ( $('#login').is(':hidden') ) {
+
+	    		event.preventDefault();
+	            var $mail = template.find("#register-email");
+	            var $pass = template.find("#register-password");
+	            var $nom = template.find("#register-nom");
+	            var $prenom = template.find("#register-prenom");
+
+	            if ($mail.value != "" && $pass.value != "" && $nom.value != "" && $prenom.value != "") {
+	                Accounts.createUser(
+	                    {
+	                        email: $mail.value,
+	                        password: $pass.value,
+	                        profile: {
+	                            nom: $nom.value,
+	                            prenom: $prenom.value,
+	                            linkedAcc: 0
+	                        }
+	                    }, function (err) {
+	                        if (err) {
+	                            // Inform the user that account creation failed
+	                            alert('register failed');
+	                        } else {
+	                            // Success. Account has been created and the user
+	                            // has logged in successfully.
+	                            Router.go('/');
+	                            window.popupLogin.hide();
+	                        }
+	                    });
+	            }
+
+            }
+            else
+            {
+            	$( "#login" ).slideUp( "slow", function() {
+		        	$('#creatingAccount').slideDown( "slow");
+				});
+            }
+
+        	
+
+			
+        }
+	});
+
 }

@@ -1,5 +1,11 @@
 /* CSS declarations go here */
 
+@import url(http://fonts.googleapis.com/css?family=Lato:500,600,700,800,900,400,300);
+
+
+body{
+	font-family: Lato;
+}
 .visible {
     display: block;
 }
@@ -12,3 +18,5 @@
     background: url('/public/img/loader.gif') no-repeat left center;
     padding-left: 64px;
 }
+
+@import url('public/css/input_text.css');

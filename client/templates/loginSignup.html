@@ -1,0 +1,89 @@
+<template name="loginSignup">
+
+<div>
+    <div id="login">
+      <h1 class="popup-title">Login</h1>
+
+      <div class="floating-input">      
+        <input type="text" id="login-email" required>
+        <span class="highlight"></span>
+        <span class="bar"></span>
+        <label>Email</label>
+      </div>
+
+      <div class="floating-input">      
+        <input type="password" id="login-password" required>
+        <span class="highlight"></span>
+        <span class="bar"></span>
+        <label>Password</label>
+      </div>
+
+
+      <div class="checkbox">
+        <label for="remember-me" ><input id="remember-me" type="checkbox" value="">Keep me signed in</label>
+      </div>
+
+      <div class="bouton bouton-primary" id="login">LOG IN</div>
+
+      <p class="forget">Did you <a class="forget" href="#">forget your password</a> ?</p>
+
+      <hr class="separator">
+
+      <h1 class="popup-title">Sign Up</h1>
+
+      <p class="description">If you don't have an account, click the button bellow to create your account.</p>
+
+      <div class="bouton bouton-second" id="submit_user">CREATE ACCOUNT</div>
+
+      <p class="or">OR</p>
+
+      <div class="svg-container" id="svg-border">
+        <img class="svg" src="img/popup/ic-fb.svg">
+      </div>
+      <div class="svg-container">
+        <img class="svg" src="img/popup/ic-google.svg">
+      </div>
+
+
+    </div>
+
+    <div id="creatingAccount">
+      <h1 class="popup-title">Login</h1>
+
+      <div class="floating-input">      
+        <input type="text" id="register-email" required>
+        <span class="highlight"></span>
+        <span class="bar"></span>
+        <label>Email</label>
+      </div>
+
+      <div class="floating-input">      
+        <input type="password" id="register-password" required>
+        <span class="highlight"></span>
+        <span class="bar"></span>
+        <label>Password</label>
+      </div>
+
+      <div class="floating-input">      
+        <input type="text" id="register-prenom" required>
+        <span class="highlight"></span>
+        <span class="bar"></span>
+        <label>Prenom</label>
+      </div>
+
+      <div class="floating-input">      
+        <input type="text" id="register-nom" required>
+        <span class="highlight"></span>
+        <span class="bar"></span>
+        <label>Nom</label>
+      </div>
+
+      <div class="bouton bouton-second" id="submit_user">CREATE ACCOUNT</div>
+  </div>
+	
+
+	
+
+</div>
+
+</template>

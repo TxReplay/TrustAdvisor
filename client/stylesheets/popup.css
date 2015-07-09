@@ -1,0 +1,101 @@
+/*	popup css over ride		*/
+
+.custom-modal-body{
+	padding: 0 10%
+}
+
+.modal-header{
+	border-bottom: 0;
+}
+
+.modal-footer{
+	border-top: 0;
+}
+
+.modal-dialog{
+	width: 30%
+}
+
+.modal-content{
+	border-radius: 3px;
+}
+
+
+/*	custom  */
+
+.bouton{
+	width: 100%;
+	padding: 20px 0;
+	color: #fff;
+	font-size: 20px;
+	border-radius: 4px;
+	font-weight: 700;
+	text-align: center;
+	cursor: pointer;
+}
+
+.bouton-primary{
+	background-color: #ff3366;
+	margin-top: 25px
+}
+
+.bouton-second{
+	background-color: #f1a443;
+	margin-top: 22px
+}
+
+.popup-title{
+	color: #4a4a4a;
+	font-weight: bold;
+	font-size: 24px;
+	margin-bottom: 25px
+}
+.forget{
+	text-align: center;
+	font-size: 11px;
+	font-style: italic;
+	color: #b5b5b5;
+	padding-top: 10px;
+}
+
+.forget a{
+	text-decoration: underline;
+}
+
+.separator{
+	margin: 40 auto;
+	width: 25%;
+	height: 2px;
+	background-color: #dadada;
+}
+
+.description{
+	color: #9b9b9b;
+	text-align: center
+}
+
+.or{
+	text-align: center;
+	font-weight: 400;
+	font-size: 18px;
+	padding: 10px 0
+}
+
+.svg-container{
+	width: 50%;
+	/*display: inline-block;*/
+	float: left;
+	text-align: center;
+}
+
+#svg-border{
+	border-right:2px solid #dadada;
+	box-sizing: border-box;
+}
+
+.svg{
+	height:40px;
+	width:40px;
+}
+
+#creatingAccount{display: none}
