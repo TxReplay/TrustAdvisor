@@ -10,7 +10,7 @@ Template.register.events
             var $username = template.find("#username");
 
             if ($mail.value != "" && $pass.value != "" && $nom.value != "" && $prenom.value != "" && $username.value != "") {
-                Accounts.createUser(
+                Accounts.createUser( 
                     {
                         email: $mail.value,
                         password: $pass.value,
@@ -18,7 +18,10 @@ Template.register.events
                             username: $username.value,
                             nom: $nom.value,
                             prenom: $prenom.value,
-                            linkedAcc: 0
+                            linkedAcc: 0,
+														linkedEbay : false,
+														linkedBlabla : false,
+														linkedBnb : false
                         }
                     }, function (err) {
                         if (err) {

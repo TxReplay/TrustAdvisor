@@ -1,0 +1,99 @@
+.profil-header {
+
+padding-left: 10%;
+padding-right: 15%;
+background-color: #f9f9f9;
+}
+
+.profil-picture {
+
+float: left;
+margin-right: 50px;
+height: 150px;
+width: 150px;
+}
+
+.profil-infos {
+
+overflow: hidden;
+float: left;
+}
+
+.profil-name {
+
+font-family: "Roboto";
+font-size: 24px;
+margin-bottom: 10px;
+}
+
+.profil-description {
+
+padding-left: 20px;
+border-left: 3px solid #EAEAEA;
+}
+
+.profil-note {
+
+font-family: "Roboto";
+font-size: 16px;
+float: right;
+}
+
+.profil-settings {
+
+background: url('img/profil/ic-settings.svg') no-repeat;
+}
+
+.profil-graph {
+
+width: 100%;
+height: 100%;
+background: url('img/profil/graphique.png') no-repeat;
+}
+
+.category-card-profil {
+    height: 130px;
+    border: 3px solid #eaeaea;
+    border-radius: 3px;
+    padding: 5%;
+    margin-bottom: 30px;
+    position: relative;
+    overflow: hidden;
+
+    -webkit-transition: border-color .5s ease;
+    -moz-transition: border-color .5s ease;
+    -o-transition: border-color .5s ease;
+    transition: border-color .3s ease;
+}
+
+.category-card-profil:hover {
+    border-color: #b3b3b3;
+}
+
+.category-card-profil a:hover > .icon-share,
+.category-card-profil a:hover > .icon-link {
+    background: #fc3775;
+}
+
+.category-title {
+
+font-family: "Roboto";
+font-size: 16px;
+text-transform: uppercase;
+}
+
+.profil-link-add {
+
+width: 50px;
+height: 50px;
+margin-left: auto;
+margin-right: auto;
+background: url('client/img/profil/ic-filters.svg');
+}
+
+.profil-link-text {
+
+font-size: 14px;
+text-transform: uppercase;
+text-align: center;
+}
