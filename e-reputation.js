@@ -93,8 +93,11 @@ if ( Meteor.isClient )
 							});
             }
         },
-				
-				'click #blabla-add' : function (event, template) {
+	});
+
+	Template.addAccountDialog.events({
+		
+		'click #blabla-add' : function (event, template) {
 
         $("#blabla-add").toggleClass('visible hidden');
         $("#blabla-id").toggleClass('visible hidden');
@@ -111,7 +114,7 @@ if ( Meteor.isClient )
         }
     },
 		
-				'click #ebay-add' : function (event, template) {
+		'click #ebay-add' : function (event, template) {
 
         $("#ebay-add").toggleClass('visible hidden');
         $("#ebay-id").toggleClass('visible hidden');
@@ -145,5 +148,4 @@ if ( Meteor.isClient )
         }
     }
 	});
-
 }
