@@ -1,0 +1,61 @@
+.container-fluid{
+	padding: 0;
+	width: 100%;
+}
+.hang{
+	color: #FF3366;
+	font-size: 18px;
+	font-family: 'Lato';
+}
+.discover-title{
+	font-size: 36px;
+	font-family: 'Raleway';
+}
+.form-group{
+	border: 1px solid #EAEAEA;
+	border-radius: 3px;
+	padding: 20px;
+}
+.questionnaire{
+	margin-top: 30px;
+}
+.question{
+	margin-left: 20px;
+	font-family: 'Lato';
+}
+.choice{
+	width: 100%;
+	font-family: 'Raleway';
+	font-weight: 300;
+}
+.choice label input{
+	margin-right: 10px;
+	cursor: pointer;
+}
+.choice label{
+	text-transform: uppercase;
+	font-family: 'Raleway';
+	font-weight: 300;
+}
+.discover-submit{
+	border: 1px solid #FF3366;
+	color: #FF3366;
+	background: none;
+	width: 150px;
+	margin: 0 auto;
+	display: block;
+	text-transform: uppercase;
+	transition: 0.2s;
+	-webkit-transition: 0.2s;
+	-moz-transition: 0.2s;
+	-ms-transition: 0.2s;
+	-o-transition: 0.2s;
+}
+.discover-submit:focus{
+	outline: none;
+	color: #FF3366;
+}
+.discover-submit:hover{
+	background-color: #FF3366;
+	color: #FFF;
+}
