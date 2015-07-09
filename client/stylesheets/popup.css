@@ -99,3 +99,16 @@
 }
 
 #creatingAccount{display: none}
+
+/* popup on visiting new link */
+.badge-black{
+	background: url("img/badge-noir.svg") no-repeat;
+	background-size: 100%;
+	width: 90px;
+	height: 170px;
+	display: block;
+}
+.btn_pink{
+	background-color: #ff3366;
+	border: none;
+}

@@ -23,7 +23,7 @@ Template.user.helpers({
     trustIndicator :function() {
         var profile = this.profile;
         if (profile.linkedAcc > 1) {
-            var linked = profile.blablaNbAvis + profile.ebayNbAvis + bnbNbAvis;
+            var linked = parseInt(profile.blablaNbAvis) + parseInt(profile.ebayNbAvis) + parseInt(profile.bnbNbAvis);
             var notes = [profile.blablaNote, profile.ebayNoteTrust, profile.bnbNote];
             var trustInd = 0;
             for (var i=0; i<notes.length; i++) {
@@ -133,16 +133,16 @@ Template.user.helpers({
 					Meteor.call("getEbayInfoswithUsername", username, function(error, result){
 						if (error) {
 							var infos_set = {"linked" : false};
-							Session.set('bla', infos_set);
+							Session.set('ebay', infos_set);
 						}
 						else {
 							var test = result.data.results.collection1[0].note;
-							test = test.replace(/[0-9]{1,}[^0-9]{0,}/, "").replace(/%[^0-9]{0,}/, "");
-							//test = parseInt(test);
+							//Evaluations positives (12 derniers mois) : 99,5%
+							test = test.replace(/[^0-9]{0,}[0-9]{1,}[^0-9]{0,}/, "").replace(/%/, "");
+							test = parseFloat(test);
 							var noteTrust = (test /100 * 5).toFixed(2);
 							var avis = result.data.results.collection1[0].nb_avis;
 							avis = avis.split(/[^0-9]{1,}/);
-							console.log(test);
 							var infos_set = {"note" : note, "noteTrust" : noteTrust, "linked" : true, "nbAvis" : parseInt(avis[1])};
 							Session.set('ebay', infos_set);
 						}
@@ -192,7 +192,7 @@ Template.user.helpers({
                 Meteor.call("getAirbnbInfoswithID", id, function(error, result){
                     if (error) {
                         var infos_set = {"linked" : false};
-                        Session.set('bla', infos_set);
+                        Session.set('bnb', infos_set);
                     }
                     else {
                         var random = ((Math.random() * 5) + 1).toFixed(2);
