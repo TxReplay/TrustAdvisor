@@ -1,7 +1,6 @@
 Template.user.helpers({
 
     nom : function() {
-			Session.set('ebay_call', 0);
 			return this.profile.nom;
     },
 
@@ -133,9 +132,7 @@ Template.user.helpers({
 			else {
 				var username = this.profile.ebayId;
 				if ( username ) {
-					var call = Session.get('ebay_call');
-					if (call < 10) {
-						Meteor.call("getEbayInfoswithUsername", username, function(error, result){
+						Meteor.call("getEbayInfoswithUsername", function(error, result){
 							if (error) {
 								var infos_set = {"linked" : false};
 								Session.set('ebay', infos_set);
@@ -161,10 +158,6 @@ Template.user.helpers({
 							Meteor.users.update( { _id: this._id }, {$set: {"profile.ebayNote" : infos.note, "profile.ebayNoteTrust" : infos.noteTrust, "profile.ebayNbAvis" : infos.nbAvis, "profile.linkedAcc" : linked, "profile.linkedEbay" : true} } );
 						}
 						setTimeout( function(){} , 4000);
-						return infos;
-					}
-					else {
-						var infos = {"note" : "Unable to get your", "noteTrust" : "Account informations, try to add it again", "fail" : true};
 						return infos;
 					}
 				}
@@ -317,9 +310,9 @@ Template.user.events({
 				}
 			}
 
-			var rd = ReactiveModal.initDialog(shareDialogInfo);
+			var modalAcc = ReactiveModal.initDialog(shareDialogInfo);
 
-			rd.show();
+			modalAcc.show();
 		}
 		
 });

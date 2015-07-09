@@ -114,6 +114,7 @@ Template.linkAcc.events({
             "profile.pseudoBlabla": blabla_id
           }
         });
+				window.modalAcc.hide();
       }
       else {
         alert('C\'est vide...');
@@ -133,6 +134,7 @@ Template.linkAcc.events({
       var username = template.find("#ebay-id-input").value;
       if (username) {
         Meteor.users.update({_id: user._id}, {$set: {"profile.ebayId": username}});
+				window.modalAcc.hide();
       }
       else {
         alert('C\'est vide...');
@@ -152,6 +154,7 @@ Template.linkAcc.events({
       var bnb_id = template.find("#bnb-id-input").value;
       if (bnb_id) {
         Meteor.users.update({_id: user._id}, {$set: {"profile.bnbId": "2241893", "profile.pseudoBnb": bnb_id}});
+				window.modalAcc.hide();
       }
       else {
         alert('C\'est vide...');
