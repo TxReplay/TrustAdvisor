@@ -7,7 +7,7 @@
 			<div class="profil-infos">
 				<div class="profil-name">{{ nom }} {{ prenom }}</div>
 				<div class="profil-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores, excepturi, ad. Earum eos consectetur quae, culpa, voluptatum alias nemo commodi. Doloribus repudiandae natus deserunt illo culpa deleniti eum vitae sint!</div>
-				<!-- <div class="profil-note">{{ trustIndicator }}</div> -->
+				<div class="profil-note">{{ trustIndicator }}</div>
 			</div>
 		</div>
 	</div>
@@ -23,11 +23,10 @@
 			{{ #if blablaAccount }}
 				<div class="col-sm-3">
 					<div class="category-card-profil">
-							
-						<button id="blabla-share">X</button>
-						<button id="blabla-delete">X</button>
+						<button  class="btn-delete-card" id="blabla-delete">X</button>
 						<div class="category-title">BlablaCar</div>
-						{{ #if blablaInfos.nbAvis }}
+						<img src="/img/profil/mini-graphe.png" class="mini-graphe" alt="Mini Graphe">
+						<!-- {{ #if blablaInfos.nbAvis }}
 							Note : {{ blablaInfos.note }}/5
 							<br>
 							Nombre d'avis {{ blablaInfos.nbAvis }}
@@ -35,17 +34,17 @@
 							<div class="loader">
 							Nous recupérons les infos de votre compte, veuillez patienter
 							</div>
-						{{ /if }}
+						{{ /if }} -->
 					</div>
 				</div>
 			{{ /if }}
 			{{ #if bnbAccount }}
 				<div class="col-sm-3">
 					<div class="category-card-profil">
-						<button id="bnb-share">X</button>
-						<button id="bnb-delete">X</button>
+						<button  class="btn-delete-card" id="bnb-delete">X</button>
 						<div class="category-title">AirBnb</div>
-						{{ #if bnbInfos.nbAvis }}
+						<img src="/img/profil/mini-graphe.png" class="mini-graphe" alt="Mini Graphe">
+						<!-- {{ #if bnbInfos.nbAvis }}
 							Note: {{ bnbInfos.note }}
 							<br>
 							Nombre d'avis : {{ bnbInfos.nbAvis }}
@@ -53,17 +52,17 @@
 							<div class="loader">
 							Nous recupérons les infos de votre compte, veuillez patienter
 							</div>
-						{{ /if }}
+						{{ /if }} -->
 						</div>
 				</div>
 			{{ /if }}
 			{{ #if ebayAccount }}
 				<div class="col-sm-3">
 					<div class="category-card-profil">
-						<button id="ebay-share">X</button>
-						<button id="ebay-delete">X</button>
+						<button class="btn-delete-card" id="ebay-delete">X</button>
 						<div class="category-title">Ebay</div>
-						{{ #if ebayInfos.note }}
+						<img src="/img/profil/mini-graphe.png" class="mini-graphe" alt="Mini Graphe">
+						<!-- {{ #if ebayInfos.note }}
 							Evaluation : {{ ebayInfos.note }}
 							Note ebayTrust : {{ ebayInfos.noteTrust }}
 							<br>
@@ -71,7 +70,7 @@
 							<div class="loader">
 							Nous recupérons les infos de votre compte, veuillez patienter
 							</div>
-						{{ /if }}
+						{{ /if }} -->
 					</div>
 				</div>
 			{{ /if }}

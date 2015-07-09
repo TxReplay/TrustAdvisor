@@ -24,7 +24,7 @@
 }
 
 .profil-name {
-    font-family: "Roboto";
+    font-family: "Raleway";
     font-size: 24px;
     margin-bottom: 10px;
 }
@@ -37,7 +37,7 @@
 .profil-note {
     font-family: "Roboto";
     font-size: 16px;
-    float: right;
+    margin-top: 20px;
 }
 
 .profil-settings { 
@@ -48,6 +48,7 @@
 
 .profil-graph img {
     max-width: 100%;
+    margin: 20px auto;
 }
 
 .category-card-profil {    
@@ -73,8 +74,9 @@
 }
 
 .category-title {
-    font-family: "Roboto";
+    font-family: "Raleway";
     font-size: 16px;
+    text-align: center;
     text-transform: uppercase;
 }
 
@@ -88,4 +90,12 @@
     font-size: 14px;
     text-transform: uppercase;
     text-align: center;
+}
+
+.btn-delete-card {
+    float: right;
+}
+
+.mini-graphe {
+    margin: 10px 15px;
 }
