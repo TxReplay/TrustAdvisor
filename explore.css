@@ -1,0 +1,141 @@
+.sub_header_container {
+    min-height: 150px;
+    background: #f9f9f9;
+}
+
+.sub_categories {
+    margin: 1.6% 0 0;
+    overflow: hidden;
+}
+
+.sub_categories li {
+    min-height: 50px;
+    border: 1px solid #b3b3b3;
+    border-radius: 3px;
+    list-style: none;
+    text-align: center;
+    float: left;
+    padding: 15px;
+    margin: 0 10px 0 0;
+    color: #b3b3b3;
+}
+
+.sub_categories li a {
+    color: #b3b3b3;
+}
+
+.sub_categories li:before {
+    content: "# ";
+}
+
+.category_card {
+    height: 300px;
+    border: 1px solid #eaeaea;
+    border-radius: 3px;
+    padding: 5%;
+    margin-bottom: 30px;
+    position: relative;
+    overflow: hidden;
+
+    -webkit-transition: border-color .5s ease;
+    -moz-transition: border-color .5s ease;
+    -o-transition: border-color .5s ease;
+    transition: border-color .3s ease;
+
+}
+
+.category_card:hover {
+    border-color: #b3b3b3;
+}
+
+.category_card a:hover > .icon-share,
+.category_card a:hover > .icon-link {
+    background: #fc3775;
+}
+
+.icon-share {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: #b3b3b3;
+
+    -webkit-mask-image: url("img/explore/ic-share.svg");
+    mask-image: url("img/explore/ic-share.svg");
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-size: 100%;
+    mask-size: 100%;
+
+    -webkit-transition: background .3s ease;
+    -moz-transition: background .3s ease;
+    -o-transition: background .3s ease;
+    transition: background .3s ease;
+
+    display: block;
+    background-size: 100%;
+    width: 20px;
+    height: 20px;
+}
+
+.icon-link {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #b3b3b3;
+
+    -webkit-mask-image: url("img/explore/ic-visit.svg");
+    mask-image: url("img/explore/ic-visit.svg");
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-size: 100%;
+    mask-size: 100%;
+
+    -webkit-transition: background .3s ease;
+    -moz-transition: background .3s ease;
+    -o-transition: background .3s ease;
+    transition: background .3s ease;
+
+    display: block;
+    background-size: 100%;
+    width: 25px;
+    height: 25px;
+}
+
+.icon-filter {
+    background: #b3b3b3;
+
+    -webkit-mask-image: url("img/explore/ic-filters.svg");
+    mask-image: url("img/explore/ic-filters.svg");
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-size: 100%;
+    mask-size: 100%;
+
+    display: block;
+    width: 30px;
+    height: 30px;
+    float: left;
+    margin-right: 0.5%;;
+}
+
+.icon-filter:hover {
+    background: #fc3775;
+}
+
+.logo-thumb {
+    display: block;
+    margin: 10% auto 0;
+}
+
+.category_description {
+    position: absolute;
+    bottom: 3%;
+    padding: 2%;
+    text-align: center;
+}
+
+.add_filters {
+    margin-bottom: 2%;
+    display: block;
+}
+
