@@ -1,0 +1,79 @@
+<template name="linkAcc">
+<style type="text/css">
+    .modal-dialog {
+      width: 75%;
+    }
+    .modal-body{
+      padding: 0 15%;;
+    }
+</style>
+<div class="row">
+		<div class="new-account">
+			Add a new account
+		</div>
+		
+		<div class="new-note visible" id="form-click" data-form="click">
+			Click on one of the website to link it.
+		</div>
+		<div class="form-link-account hidden" id="form-blabla">
+		{{ #if blablaAccount }}
+			<div class="form-exist">
+				You've already linked your BlablaCar account
+			</div>
+		{{ else }}
+			<div class="floating-input" id="blabla-id">      
+        <input type="text" id="blabla-id-input">
+        <span class="highlight"></span>
+        <span class="bar"></span>
+        <label>Enter your BlablaCar username</label>
+      </div>
+			<div class="btn form-submit" id="blabla-save">Submit</div>
+		{{ /if }}
+		</div>
+		<div class="form-link-account hidden" id="form-ebay">
+		{{ #if ebayAccount }}
+			<div class="form-exist">
+				You've already linked your Ebay account
+			</div>
+		{{ else }}
+			<div class="floating-input" id="ebay-id">      
+        <input type="text" id="ebay-id-input">
+        <span class="highlight"></span>
+        <span class="bar"></span>
+        <label>Enter your Ebay username</label>
+      </div>
+			<div class="btn form-submit" id="ebay-save">Submit</div>
+		{{ /if }}
+		</div>
+		<div class="form-link-account hidden" id="form-bnb">
+		{{ #if bnbAccount }}
+			<div class="form-exist">
+				You've already linked your AirBnb account
+			</div>
+		{{ else }}
+			<div class="floating-input" id="bnb-id">      
+        <input type="text" id="bnb-id-input">
+        <span class="highlight"></span>
+        <span class="bar"></span>
+        <label>Enter your AirBnb username</label>
+      </div>
+			<div class="btn form-submit" id="bnb-save">Submit</div>
+		{{ /if }}
+		</div>
+		<div class="new-available">
+			Websites currently available:
+		</div>
+		
+		<div class="new-websites">
+			<div class="col-sm-4">
+				<img class="logo-thumb" src="/img/profil/blablacar.png" width="120" id="blabla-add">
+			</div>
+			<div class="col-sm-4">
+				<img class="logo-thumb" src="/img/profil/airbnb.png" width="120" id="bnb-add">
+			</div>
+			<div class="col-sm-4">
+				<img class="logo-thumb" src="/img/explore/logos/uber.png" width="120" id="ebay-add">
+			</div>
+		</div>
+</div>
+</template>

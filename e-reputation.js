@@ -94,61 +94,77 @@ if ( Meteor.isClient )
             }
         },
 	});
-
-	Template.addAccountDialog.events({
+	
+Template.linkAcc.events({
 		
 		'click #blabla-add' : function (event, template) {
-
-        $("#blabla-add").toggleClass('visible hidden');
-        $("#blabla-id").toggleClass('visible hidden');
-        $("#blabla-save").toggleClass('visible hidden');
-    },
-
-    'click #blabla-save' : function(event, template) {
-				var user = Meteor.users.findOne(this.userId);
-        var blabla_id = template.find("#blabla-id-input").value;
-        if ( blabla_id ) {
-            Meteor.users.update( { _id: user._id }, {$set: {"profile.blablaId" : "0KjfoFenIKvojq2_1a4PYw", "profile.pseudoBlabla" : blabla_id} } );
-        }
-        else {
-            alert('C\'est vide...');
-        }
-    },
+				var toggle = $(".new-note").attr('data-form');
+				$(".new-note").attr('data-form', 'blabla');
+        $("#form-blabla").toggleClass('visible hidden');
+        $("#form-" + toggle).toggleClass('visible hidden');
+		},
 		
-		'click #ebay-add' : function (event, template) {
-
-        $("#ebay-add").toggleClass('visible hidden');
-        $("#ebay-id").toggleClass('visible hidden');
-        $("#ebay-save").toggleClass('visible hidden');
+    'click #blabla-save': function (event, template) {
+      var user = Meteor.users.findOne(this.userId);
+      var blabla_id = template.find("#blabla-id-input").value;
+      if (blabla_id) {
+        Meteor.users.update({_id: user._id}, {
+          $set: {
+            "profile.blablaId": "0KjfoFenIKvojq2_1a4PYw",
+            "profile.pseudoBlabla": blabla_id
+          }
+        });
+				modalAcc.hide();
+      }
+      else {
+        alert('C\'est vide...');
+      }
     },
 
-    'click #ebay-save' : function(event, template) {
-				var user = Meteor.users.findOne(this.userId);
-        var username = template.find("#ebay-id-input").value;
-        if ( username ) {
-            Meteor.users.update( { _id: user._id }, {$set: {"profile.ebayId" : username} } );
-        }
-        else {
-            alert('C\'est vide...');
-        }
-    },
-		
-		'click #bnb-add' : function (event, template) {
+    'click #ebay-add': function (event, template) {
 
-        $("#bnb-add").toggleClass('visible hidden');
-        $("#bnb-id").toggleClass('visible hidden');
-        $("#bnb-save").toggleClass('visible hidden');
+      var toggle = $(".new-note").attr('data-form');
+			$(".new-note").attr('data-form', 'ebay');
+			$("#form-ebay").toggleClass('visible hidden');
+			$("#form-" + toggle).toggleClass('visible hidden');
     },
 
-    'click #bnb-save' : function(event, template) {
-				var user = Meteor.users.findOne(this.userId);
-        var bnb_id = template.find("#bnb-id-input").value;
-        if ( bnb_id ) {
-            Meteor.users.update( { _id: user._id }, {$set: {"profile.bnbId" : "2241893", "profile.pseudoBnb" : bnb_id} } );
-        }
-        else {
-            alert('C\'est vide...');
-        }
+    'click #ebay-save': function (event, template) {
+      var user = Meteor.users.findOne(this.userId);
+      var username = template.find("#ebay-id-input").value;
+      if (username) {
+        Meteor.users.update({_id: user._id}, {$set: {"profile.ebayId": username}});
+				modalAcc.hide();
+      }
+      else {
+        alert('C\'est vide...');
+      }
+    },
+
+    'click #bnb-add': function (event, template) {
+
+			var toggle = $(".new-note").attr('data-form');
+			$(".new-note").attr('data-form', 'bnb');
+			$("#form-bnb").toggleClass('visible hidden');
+			$("#form-" + toggle).toggleClass('visible hidden');
+    },
+
+    'click #bnb-save': function (event, template) {
+      var user = Meteor.users.findOne(this.userId);
+      var bnb_id = template.find("#bnb-id-input").value;
+      if (bnb_id) {
+        Meteor.users.update({_id: user._id}, {$set: {"profile.bnbId": "2241893", "profile.pseudoBnb": bnb_id}});
+				modalAcc.hide();
+      }
+      else {
+        alert('C\'est vide...');
+      }
     }
-	});
+  });
+	
+  Template.registerHelper("currentPageIs", function(templatename) {
+    var currentRoute = Router.current();
+    return templatename === currentRoute.lookupTemplate() ? true : false;
+  });
 }
+

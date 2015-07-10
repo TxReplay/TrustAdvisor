@@ -4,6 +4,10 @@
     border-bottom: 1px solid #EAEAEA;
 }
 
+.sub_header_container h2 span{
+    color: #fc3775;
+    font-style: italic;
+}
 .sub_categories {
     margin: 1.6% 0 0;
     overflow: hidden;

@@ -1,7 +1,9 @@
 <template name="app_layout">
   <div class="container-fluid">
     {{> header}}
-    {{> yield }}
+    {{#momentum plugin='fade'}}
+      {{> yield }}
+    {{/momentum}}
     <footer>
       {{> footer}}
     </footer>

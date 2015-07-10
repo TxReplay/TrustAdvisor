@@ -1,7 +1,7 @@
 Template.user.helpers({
 
     nom : function() {
-        return this.profile.nom;
+			return this.profile.nom;
     },
 
     mail : function() {
@@ -23,20 +23,22 @@ Template.user.helpers({
     trustIndicator :function() {
         var profile = this.profile;
         if (profile.linkedAcc > 1) {
-            var linked = parseInt(profile.blablaNbAvis) + parseInt(profile.ebayNbAvis) + parseInt(profile.bnbNbAvis);
+            var avis = [parseInt(profile.blablaNbAvis), parseInt(profile.ebayNbAvis), parseInt(profile.bnbNbAvis)];
             var notes = [profile.blablaNote, profile.ebayNoteTrust, profile.bnbNote];
             var trustInd = 0;
+						var avisTotal = 0;
             for (var i=0; i<notes.length; i++) {
-                if (notes[i]) {
-                    trustInd += parseFloat(notes[i]);
+                if (notes[i] && avis[i] != NaN) {
+                    trustInd += parseFloat(notes[i]) * avis[i];
+										avisTotal += avis[i];
                 }
             }
-            trustInd = (trustInd/ linked).toFixed(2);
-            var text = "Votre note TrustAdvisor est de : " + trustInd;
+            trustInd = (trustInd/ avisTotal).toFixed(2);
+            var text = "Your TrustAdvisor rank is : " + trustInd;
             return text;
         }
         else {
-            return "Veuillez renseigner au moins 2 comptes pour recevoir votre note TrustAdvisor!";
+            return "You need to associate at least 2 accounts in order to get your TrustAdvisor rank!";
         }
     },
 
@@ -236,25 +238,35 @@ Template.user.events({
         linked--;
         Meteor.users.update( { _id: this._id }, {$unset: {"profile.bnbId" : "", "profile.bnbNote" : "", "profile.bnbNbAvis" : "", "profile.pseudoBnb" : ""}, $set: { "profile.linkedAcc" : linked, "profile.linkedBnb" : false} } );
     },
-		
-		'click .profil-add' : function() {
+
+		'click #bnb-detail' : function() {
+
+				$("#bnb-card").toggleClass("detail");
+		},
+
+		'click #ebay-detail' : function() {
+
+				$("#ebay-card").toggleClass("detail");
+		},
+
+		'click #blabla-detail' : function() {
+
+				$("#blabla-card").toggleClass("detail");
+		},
+
+		'click .profil-add' : function(event, template) {
 			var user = Meteor.users.findOne({ _id : this._id });
 			var shareDialogInfo = {
-				template: Template.addAccountDialog,
-				title: "Link an account",
+				template: Template.linkAcc,
+				 modalDialogClass: "custom-modal-dialog", //optional
+			    modalBodyClass: "custom-modal-body", //optional
 				removeOnHide: true, //optional. If this is true, modal will be removed from DOM upon hiding
-				buttons: {
-					"ok": {
-						class: 'btn-info',
-						label: 'Done'
-					}
-				},
 				doc: {  // Provide data context for Template.appShareDialog
 					userId : function() {
-					
+
 						return this._id;
 					},
-					
+
 					blablaAccount : function() {
 						if (typeof user.profile.blablaId != 'undefined') {
 								return true;
@@ -267,7 +279,7 @@ Template.user.events({
 					blablaId : function() {
 						return user.profile.pseudoBlabla;
 					},
-					
+
 					ebayAccount : function() {
 						if (typeof user.profile.ebayId != 'undefined') {
 							return true;
@@ -295,9 +307,9 @@ Template.user.events({
 				}
 			}
 
-			var rd = ReactiveModal.initDialog(shareDialogInfo);
+			var modalAcc = ReactiveModal.initDialog(shareDialogInfo);
 
-			rd.show();
+			modalAcc.show();
 		}
-		
+
 });
