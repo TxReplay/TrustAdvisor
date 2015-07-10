@@ -19,7 +19,7 @@ Template.user.helpers({
 		linked : function() {
 				return this.profile.linkedAcc;
 		},
-		
+
     trustIndicator :function() {
         var profile = this.profile;
         if (profile.linkedAcc > 1) {
@@ -161,8 +161,7 @@ Template.user.helpers({
 						return infos;
 					}
 				}
-			}
-    }, 
+			},
 
     ebayId : function() {
         return this.profile.ebayId;
@@ -223,7 +222,7 @@ Template.user.helpers({
 });
 
 Template.user.events({
-		
+
     'click #blabla-delete' : function(event, template) {
         var linked = this.profile.linkedAcc;
         linked--;
@@ -241,22 +240,22 @@ Template.user.events({
         linked--;
         Meteor.users.update( { _id: this._id }, {$unset: {"profile.bnbId" : "", "profile.bnbNote" : "", "profile.bnbNbAvis" : "", "profile.pseudoBnb" : ""}, $set: { "profile.linkedAcc" : linked, "profile.linkedBnb" : false} } );
     },
-		
+
 		'click #bnb-detail' : function() {
-		
+
 				$("#bnb-card").toggleClass("detail");
 		},
-		
+
 		'click #ebay-detail' : function() {
-		
+
 				$("#ebay-card").toggleClass("detail");
 		},
-		
+
 		'click #blabla-detail' : function() {
-		
+
 				$("#blabla-card").toggleClass("detail");
 		},
-		
+
 		'click .profil-add' : function(event, template) {
 			var user = Meteor.users.findOne({ _id : this._id });
 			var shareDialogInfo = {
@@ -266,10 +265,10 @@ Template.user.events({
 				removeOnHide: true, //optional. If this is true, modal will be removed from DOM upon hiding
 				doc: {  // Provide data context for Template.appShareDialog
 					userId : function() {
-					
+
 						return this._id;
 					},
-					
+
 					blablaAccount : function() {
 						if (typeof user.profile.blablaId != 'undefined') {
 								return true;
@@ -282,7 +281,7 @@ Template.user.events({
 					blablaId : function() {
 						return user.profile.pseudoBlabla;
 					},
-					
+
 					ebayAccount : function() {
 						if (typeof user.profile.ebayId != 'undefined') {
 							return true;
@@ -314,5 +313,5 @@ Template.user.events({
 
 			modalAcc.show();
 		}
-		
+
 });
