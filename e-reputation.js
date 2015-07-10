@@ -4,7 +4,7 @@ test = new Mongo.Collection( "test" );
 if ( Meteor.isClient )
 {
 
-	Template.navigation.events
+	Template.header.events
 	({
 		'click .logout' : function ( event, template )
 		{
