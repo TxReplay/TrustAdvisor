@@ -26,7 +26,7 @@
 					<div class="category-card-profil" id="blabla-card">
 						{{ #if blablaInfos.nbAvis }}
 							<i id="blabla-detail" class="icon-detail"></i>
-							<i id="blabla-delete" class="icon-delete"></i>
+							<span id="blabla-delete" class="icon-delete">x</span>
 							<div class="category-title">BlablaCar</div>
 							<img src="/img/profil/mini-graphe.png" class="mini-graphe" alt="Mini Graphe">
 							Note : {{ blablaInfos.note }}/5
@@ -46,7 +46,7 @@
 					<div class="category-card-profil" id="bnb-card">
 						{{ #if bnbInfos.nbAvis }}
 							<i id="bnb-detail" class="icon-detail"></i>
-							<i id="bnb-delete" class="icon-delete"></i>
+							<span id="bnb-delete" class="icon-delete">x</span>
 							<div class="category-title">AirBnb</div>
 							<img src="/img/profil/mini-graphe.png" class="mini-graphe" alt="Mini Graphe">
 							Note: {{ bnbInfos.note }}
@@ -66,7 +66,7 @@
 					<div class="category-card-profil" id="ebay-card">
 						{{ #if ebayInfos.note }}
 							<i id="ebay-detail" class="icon-detail"></i>
-							<i id="ebay-delete" class="icon-delete"></i>
+							<span id="ebay-delete" class="icon-delete">x</span>
 							<div class="category-title">Ebay</div>
 							{{ #if ebayInfos.fail }} {{ else }}<img src="/img/profil/mini-graphe.png" class="mini-graphe" alt="Mini Graphe">{{ /if }}
 							{{ #if ebayInfos.fail }} {{ else }}Evaluation : {{ /if }}{{ ebayInfos.note }}

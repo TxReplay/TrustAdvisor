@@ -140,23 +140,12 @@ height: 180px;
 
 .icon-delete {
     position: absolute;
-    top: 10px;
-    right: 10px;
-    background: #b3b3b3;
-
-    -webkit-mask-image: url("img/profil/ic-close.svg");
-    mask-image: url("img/profil/ic-close.svg");
-    -webkit-mask-repeat: no-repeat;
-    mask-repeat: no-repeat;
-    -webkit-mask-size: 100%;
-    mask-size: 100%;
-
-		-moz-mask-image: url("img/profil/ic-close.svg");
-    mask-image: url("img/profil/ic-close.svg");
-    -moz-mask-repeat: no-repeat;
-    mask-repeat: no-repeat;
-    -moz-mask-size: 100%;
-    mask-size: 100%;
+    top: 0px;
+    font-size: 25px;
+    font-weight: 100;
+    color: gray;
+    right: 5px;
+    cursor: pointer;
 		
     -webkit-transition: background .3s ease;
     -moz-transition: background .3s ease;
