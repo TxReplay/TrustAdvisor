@@ -29,3 +29,9 @@
 .footer li a:hover{
 	color: #FF3366;
 }
+
+.other-footer{
+	position: relative;
+	height: 30px;
+	bottom: 0px;
+}
