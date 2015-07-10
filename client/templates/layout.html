@@ -12,7 +12,11 @@
     {{> header}}
       {{> yield }}
     <footer>
+    {{#if currentPageIs 'Discover'}}
+
+    {{ else }}
       {{> footer}}
+    {{ /if }}
     </footer>
   </div>
   </template>
