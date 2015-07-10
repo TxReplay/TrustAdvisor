@@ -16,11 +16,3 @@ body{
     display: none;
 }
 
-.loader {
-    background: url('img/loader.GIF') no-repeat top center;
-    padding-left: 64px;
-		font-family: "Roboto";
-		font-size: 16px;
-}
-
-
