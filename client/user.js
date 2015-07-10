@@ -141,16 +141,14 @@ Template.user.helpers({
 								var test = result.data.results.collection1[0].note;
 								//Evaluations positives (12 derniers mois) : 99,5%
 								test = test.replace(/[^0-9]{0,}[0-9]{1,}[^0-9]{0,}/, "").replace(/%/, "");
-								test = parseFloat(test);
-								var noteTrust = (test /100 * 5).toFixed(2);
+								var note = parseFloat(test);
+								var noteTrust = (note /100 * 5).toFixed(2);
 								var avis = result.data.results.collection1[0].nb_avis;
 								avis = avis.split(/[^0-9]{1,}/);
 								var infos_set = {"note" : note, "noteTrust" : noteTrust, "linked" : true, "nbAvis" : parseInt(avis[1])};
 								Session.set('ebay', infos_set);
 							}
 						});
-						call++;
-						Session.set('ebay_call', call);
 						var infos = Session.get('ebay');
 						if ( !this.profile.linkedEbay ) {
 							var linked = this.profile.linkedAcc;
