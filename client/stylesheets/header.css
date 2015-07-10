@@ -1,0 +1,81 @@
+/*  A SUPPRIMER  */
+
+.container-fluid{
+	background-color: #282828;
+}
+
+/*  A SUPPRIMER  */
+
+
+.logo{
+	position: absolute;
+	top: 20px;
+	left: 20px;
+}
+.nav{
+	position: absolute;
+	top: 20px;
+	right: 25%;
+}
+.nav li{
+	display: inline-block;
+}
+.nav li a{
+	text-transform: uppercase;
+	color: #FFF;
+	font-family: 'Lato';
+	font-weight: 100;
+	transition: 0.2s;
+	-webkit-transition: 0.2s;
+	-mo-transition: 0.2s;
+	-ms-transition: 0.2s;
+	-o-transition: 0.2s;
+}
+.nav li a:hover{
+	background-color: transparent!important;
+	color: #FF3366;
+}
+.nav li a:focus{
+	background-color: transparent!important;
+	color: #FF3366;
+}
+.connexion{
+	position: absolute;
+	right: 20px;
+	top: 20px;
+}
+.login, .signup{
+	text-transform: uppercase;
+	background-color: transparent;
+	padding: 5px 10px 5px 10px;
+	margin: 5px;
+}
+.login{
+	color: #FFF;
+	border: none;
+	transition: 0.2s;
+	-webkit-transition: 0.2s;
+	-mo-transition: 0.2s;
+	-ms-transition: 0.2s;
+	-o-transition: 0.2s;
+}
+.login:hover{
+	color: #FF3366;
+}
+.signup{
+	border: 1px solid #FF3366;
+	border-radius: 3px;
+	color: #FF3366;
+	transition: 0.2s;
+	-webkit-transition: 0.2s;
+	-mo-transition: 0.2s;
+	-ms-transition: 0.2s;
+	-o-transition: 0.2s;
+}
+.signup:hover{
+	border: none;
+	border: 1px solid #FF3366;
+	border-radius: 3px;
+	color: #FFF;
+	background-color: #FF3366;
+}
