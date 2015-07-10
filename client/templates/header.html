@@ -1,18 +1,16 @@
 <template name="header">
-	<header class="container-fluid">
-      <div class="container">
-    		<div class="logo">
-    			<img src="img/logo.svg" alt="TrustAdvisor" />
-    		</div>
-    		<ul class="nav">
-    			<li><a href="">explore</a></li>
-    			<li><a href="">discover</a></li>
-    			<li><a href="">accounts manager</a></li>
-    	   	</ul>
-          <div class="connexion">
-            <button class="login">login</button>
-            <button class="signup">sign up</button>
-          </div>
-      </div>
-    </header>
+  <header class="{{#unless currentPageIs 'Home'}}header_bg_color {{/unless}}">
+  <div class="logo">
+    <img src="img/logo.png" alt="TrustAdvisor"/>
+  </div>
+  <div class="connexion">
+    <button class="login">login</button>
+    <button class="signup">sign up</button>
+  </div>
+  <ul class="nav">
+    <li><a href="">explore</a></li>
+    <li><a href="">discover</a></li>
+    <li><a href="">accounts manager</a></li>
+  </ul>
+  </header>
 </template>

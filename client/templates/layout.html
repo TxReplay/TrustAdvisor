@@ -1,5 +1,14 @@
 <template name="app_layout">
-  <div class="container-fluid">
+<div class="container-fluid ">
+  {{#if currentPageIs 'Home'}}
+    <style type="text/css">
+      body {
+        background: url("img/home/background-home.png") no-repeat;
+        background-size: cover;
+        -webkit-background-size: cover;
+      }
+    </style>
+    {{ /if }}
     {{> header}}
     {{#momentum plugin='fade'}}
       {{> yield }}
@@ -8,4 +17,4 @@
       {{> footer}}
     </footer>
   </div>
-</template>
+  </template>
