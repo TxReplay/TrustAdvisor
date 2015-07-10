@@ -3,7 +3,7 @@
     <a class="accueil btn btn-primary" href="{{pathFor 'discover'}}">Discover</a>
     {{ #if currentUser }}
         <a class="profil btn btn-primary" href="{{ pathFor 'user' _id = currentUser._id }}">My profile</a>
-        <a class="logout btn btn-warning" href="{{ pathFor 'home' }}">Disconnect</a>
+        <a class="logout btn btn-warning" href="{{ pathFor 'home' }}">Sign Out</a>
     {{ else }}
         <p class="login btn btn-primary">Sign In</p>
         <a class="register btn btn-primary" href="{{ pathFor 'register' }}">Sign Up</a>
