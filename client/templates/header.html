@@ -4,6 +4,9 @@
     <a href="{{pathFor 'home'}}"><img src="img/logo.png" alt="TrustAdvisor"/></a>
   </div>
   {{ #if currentUser }}
+   <div class="connexion">
+    <a class="logout btn signup" href="{{ pathFor 'home' }}">Sign Out</a>
+  </div>
   {{ else }}
   <div class="connexion">
     <button class="login">login</button>
