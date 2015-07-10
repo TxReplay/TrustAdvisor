@@ -4,10 +4,11 @@
 		<img src="/img/profil/edit-profile.png" class="profil-settings" alt="">
 		<div class="profil-header">
 			<img src="/img/profil/avatar.png" alt="Avatar" class="profil-picture">
+			{{ #if trustIndicator.badge }}<img src="/img/badge-noir.svg" alt="badge" class="profil-badge" width="30">{{ /if }}
 			<div class="profil-infos">
 				<div class="profil-name">{{ nom }} {{ prenom }}</div>
 				<div class="profil-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores, excepturi, ad. Earum eos consectetur quae, culpa, voluptatum alias nemo commodi. Doloribus repudiandae natus deserunt illo culpa deleniti eum vitae sint!</div>
-				<div class="profil-note">{{ trustIndicator }}</div>
+				<div class="profil-note">{{ trustIndicator.indice }}</div>
 			</div>
 		</div>
 	</div>
@@ -32,8 +33,9 @@
 							<br>
 							Nombre d'avis {{ blablaInfos.nbAvis }}
 						{{ else }}
-							<div class="loader">
-							Nous recupérons les infos de votre compte, veuillez patienter
+							<img src="/img/loader.gif" alt="loader" class="loader" width="110"> 
+							<div class="loader-text">
+							 We are gathering your informations, please wait.
 							</div>
 						{{ /if }}
 					</div>
@@ -51,8 +53,9 @@
 							<br>
 							Nombre d'avis : {{ bnbInfos.nbAvis }}
 						{{ else }}
-							<div class="loader">
-							Nous recupérons les infos de votre compte, veuillez patienter
+							<img src="/img/loader.gif" alt="loader" class="loader" width="110"> 
+							<div class="loader-text">
+							 We are gathering your informations, please wait.
 							</div>
 						{{ /if }}
 						</div>
@@ -67,11 +70,13 @@
 							<div class="category-title">Ebay</div>
 							{{ #if ebayInfos.fail }} {{ else }}<img src="/img/profil/mini-graphe.png" class="mini-graphe" alt="Mini Graphe">{{ /if }}
 							{{ #if ebayInfos.fail }} {{ else }}Evaluation : {{ /if }}{{ ebayInfos.note }}
+							<br>
 							{{ #if ebayInfos.fail }} {{ else }}Note ebayTrust : {{ /if }}{{ ebayInfos.noteTrust }}
 							<br>
 						{{ else }}
-							<div class="loader">
-							Nous recupérons les infos de votre compte, veuillez patienter
+							<img src="/img/loader.gif" alt="loader" class="loader" width="110"> 
+							<div class="loader-text">
+							 We are gathering your informations, please wait.
 							</div>
 						{{ /if }}
 					</div>

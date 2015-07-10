@@ -16,6 +16,14 @@
     border-radius: 50%;
 }
 
+.profil-badge {
+
+  position: relative;
+  top: 100px;
+  left: -75px;
+  float: left;
+}
+
 .profil-infos {
     overflow: hidden;
     float: left;
@@ -35,7 +43,7 @@
 }
 
 .profil-note {
-    font-family: "Roboto";
+    font-family: "Raleway";
     font-size: 16px;
     margin-top: 20px;
 }
@@ -49,6 +57,17 @@
 .profil-graph img {
     max-width: 100%;
     margin: 20px auto;
+}
+
+
+.loader {
+margin-left: 27%;
+}
+
+.loader-text {
+
+font-family: "Roboto";
+font-size: 16px;
 }
 
 .category-card-profil {    
@@ -65,9 +84,9 @@
     -o-transition: border-color .5s ease;
     transition: border-color .3s ease;
 		
-		-webkit-transition: height 0.8s;
-		-moz-transition: height 0.8s;
-		transition: height 0.8s;
+		-webkit-transition: height 0.5s;
+		-moz-transition: height 0.5s;
+		transition: height 0.5s;
 }
 
 .category-card-profil.detail {
